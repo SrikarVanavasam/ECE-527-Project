@@ -1,0 +1,119 @@
+#include "my_prj.h"
+#include "stdio.h"
+#include "xil_cache.h"
+#include "xil_printf.h"
+#include "xmy_prj_accelerator.h"
+#include "xparameters.h" /* SDK generated parameters */
+#include "xplatform_info.h"
+#include "xsdps.h" /* SD device driver */
+#include "xtmrctr.h"
+#include "ff.h" /* FAT File System */
+
+
+// Timer variables to measure time
+u32 timerCount_Stop;
+u32 timerCount_Start;
+
+// AXI device object for AXI Timer
+XTmrCtr timer;
+#define TMRCTR_DEVICE_ID XPAR_AXI_TIMER_0_DEVICE_ID
+
+// Max number of test cases in LeNet is 10K
+// You can reduce this for testing/debugging
+// Final report must use all 10000 test cases
+#define NUM_TESTS 10000
+
+// SD card and file reading objects
+static FIL fil; /* File object */
+static FATFS fatfs;
+static char *SD_File;
+u32 Platform;
+
+//float input[12] = {192168131.0, 60641.0, 19216811.0, 53.0, 17.0, 5.0, 108.0, 108.0, 2.0, 2.0, 0.0, 4.0};
+float input[12] = {1921681195.0, 63318.0, 52139250253.0, 443.0, 6.0, 91.0, 181.0, 165.0, 2.0, 1.0, 24.0, 327.0};
+float output[2] = {0, 0};
+
+int parse_mnist_images(char *filename, unsigned char *images) {
+  FRESULT Res;
+  UINT NumBytesRead;
+  SD_File = (char *)filename;
+  unsigned int header[4];
+
+  Res = f_open(&fil, SD_File, FA_READ);
+  if (Res) {
+    xil_printf("ERROR when opening mnist images data file!\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Opened mnist images data file\n\r");
+  }
+
+  Res = f_lseek(&fil, 0);
+  if (Res) {
+    xil_printf("Cant seek to start\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Seeked to start\n\r");
+  }
+
+  Res = f_read(&fil, (void *)header, sizeof(unsigned int) * 4, &NumBytesRead);
+  if (Res) {
+    xil_printf("Cant read header from file\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Read header from file\n\r");
+  }
+
+  Res = f_read(&fil, (void *)images,
+               sizeof(unsigned char) * NUM_TESTS * 28 * 28, &NumBytesRead);
+  if (Res) {
+    xil_printf("Cant read images from file\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Read images from file\n\r");
+  }
+
+  Res = f_close(&fil);
+  if (Res) {
+    xil_printf("Failed to close images file\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Closed images file\n\r");
+  }
+
+  xil_printf("Returning...\n\r");
+
+  return XST_SUCCESS;
+}
+
+int main()
+{
+
+	int status;
+	// Initialize timer object
+	status = XTmrCtr_Initialize(&timer, TMRCTR_DEVICE_ID);
+	if (status != XST_SUCCESS) {
+	xil_printf("Timer init fail\n\r");
+	return XST_FAILURE;
+	}
+
+	status = XTmrCtr_SelfTest(&timer, 0);
+	if (status != XST_SUCCESS) {
+	xil_printf("Timer self test fail\n\r");
+	return XST_FAILURE;
+	}
+
+	// Start
+	xil_printf("Mounting SD\n\r");
+	FRESULT Res;
+	TCHAR *Path = "0:/";
+	Res = f_mount(&fatfs, Path, 0);
+	if (Res != FR_OK) {
+	xil_printf("Failed to open filesystem\n\r");
+	return XST_FAILURE;
+	} else {
+	xil_printf("Mounted card\n\r");
+	}
+
+	my_prj(input, output);
+	printf("output: %f\n", output[0]);
+}

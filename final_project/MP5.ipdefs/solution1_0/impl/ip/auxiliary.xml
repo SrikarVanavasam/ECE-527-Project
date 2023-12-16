@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xd:acceleratorMap xmlns:xd="http://www.xilinx.com/xidane" xd:functionName="LeNet" xd:componentRef="LeNet" xd:initiationInterval="29895" xd:clockPeriod="10.000" xd:sequential="true" xd:hostMachine="64" xd:reset="control">
+  <xd:controlReg xd:name="control" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:type="generic_axi_lite" xd:offset="0x0"/>
+  <xd:arg xd:name="input[][][]" xd:originalName="input" xd:direction="inout" xd:interfaceRef="m_axi_gmem" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="31:0" xd:arraySize="1024" xd:dataWidth="32" xd:bufferDirection="in"/>
+  <xd:arg xd:name="output[]" xd:originalName="output" xd:direction="inout" xd:interfaceRef="m_axi_gmem" xd:busTypeRef="aximm" xd:dataPack="true" xd:bitMapping="31:0" xd:arraySize="10" xd:dataWidth="32" xd:bufferDirection="out"/>
+  <xd:arg xd:name="input_r" xd:originalName="input_r" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="32" xd:offset="0x10" xd:handshakeRef="ap_none"/>
+  <xd:arg xd:name="output_r" xd:originalName="output_r" xd:direction="in" xd:interfaceRef="s_axi_control" xd:busTypeRef="axilite" xd:aximmInterfaceRef="m_axi_gmem" xd:dataWidth="32" xd:offset="0x18" xd:handshakeRef="ap_none"/>
+  <xd:latencyEstimates xd:best-case="29894" xd:worst-case="29894" xd:average-case="29894"/>
+  <xd:resourceEstimates xd:LUT="47043" xd:FF="31666" xd:BRAM="150" xd:DSP="188"/>
+</xd:acceleratorMap>

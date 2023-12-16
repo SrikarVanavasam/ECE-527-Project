@@ -1,0 +1,262 @@
+
+
+================================================================
+== Vivado HLS Report for 'copy_input'
+================================================================
+* Date:           Mon Dec 11 23:04:18 2023
+
+* Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
+* Project:        Final_HLS
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|     8.750|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |   43|   43|   43|   43|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |          |  Latency  | Iteration|  Initiation Interval  | Trip |          |
+        | Loop Name| min | max |  Latency |  achieved |   target  | Count| Pipelined|
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+        |- Loop 1  |   36|   36|         3|          -|          -|    12|    no    |
+        +----------+-----+-----+----------+-----------+-----------+------+----------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 10
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 7 
+7 --> 8 
+8 --> 9 
+9 --> 10 
+10 --> 8 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 8.75>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%x_in_offset_read = call i29 @_ssdm_op_Read.ap_auto.i29(i29 %x_in_offset)" [../my-conifer-prj/firmware/my_prj.cpp:13]   --->   Operation 11 'read' 'x_in_offset_read' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 12 [1/1] (0.00ns)   --->   "%zext_ln13 = zext i29 %x_in_offset_read to i64" [../my-conifer-prj/firmware/my_prj.cpp:13]   --->   Operation 12 'zext' 'zext_ln13' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 13 [1/1] (0.00ns)   --->   "%x_in_addr = getelementptr double* %x_in, i64 %zext_ln13" [../my-conifer-prj/firmware/my_prj.cpp:13]   --->   Operation 13 'getelementptr' 'x_in_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 14 [7/7] (8.75ns)   --->   "%x_in_addr_rd_req = call i1 @_ssdm_op_ReadReq.m_axi.doubleP(double* %x_in_addr, i32 12)" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 14 'readreq' 'x_in_addr_rd_req' <Predicate = true> <Delay = 8.75> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 2 <SV = 1> <Delay = 8.75>
+ST_2 : Operation 15 [6/7] (8.75ns)   --->   "%x_in_addr_rd_req = call i1 @_ssdm_op_ReadReq.m_axi.doubleP(double* %x_in_addr, i32 12)" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 15 'readreq' 'x_in_addr_rd_req' <Predicate = true> <Delay = 8.75> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 3 <SV = 2> <Delay = 8.75>
+ST_3 : Operation 16 [5/7] (8.75ns)   --->   "%x_in_addr_rd_req = call i1 @_ssdm_op_ReadReq.m_axi.doubleP(double* %x_in_addr, i32 12)" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 16 'readreq' 'x_in_addr_rd_req' <Predicate = true> <Delay = 8.75> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 4 <SV = 3> <Delay = 8.75>
+ST_4 : Operation 17 [4/7] (8.75ns)   --->   "%x_in_addr_rd_req = call i1 @_ssdm_op_ReadReq.m_axi.doubleP(double* %x_in_addr, i32 12)" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 17 'readreq' 'x_in_addr_rd_req' <Predicate = true> <Delay = 8.75> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 5 <SV = 4> <Delay = 8.75>
+ST_5 : Operation 18 [3/7] (8.75ns)   --->   "%x_in_addr_rd_req = call i1 @_ssdm_op_ReadReq.m_axi.doubleP(double* %x_in_addr, i32 12)" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 18 'readreq' 'x_in_addr_rd_req' <Predicate = true> <Delay = 8.75> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 6 <SV = 5> <Delay = 8.75>
+ST_6 : Operation 19 [2/7] (8.75ns)   --->   "%x_in_addr_rd_req = call i1 @_ssdm_op_ReadReq.m_axi.doubleP(double* %x_in_addr, i32 12)" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 19 'readreq' 'x_in_addr_rd_req' <Predicate = true> <Delay = 8.75> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+
+State 7 <SV = 6> <Delay = 8.75>
+ST_7 : Operation 20 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(double* %x_in, [6 x i8]* @p_str9296, i32 0, i32 0, [1 x i8]* @p_str9195, i32 0, i32 12, [5 x i8]* @p_str9397, [6 x i8]* @p_str9498, [1 x i8]* @p_str9195, i32 16, i32 16, i32 16, i32 16, [1 x i8]* @p_str9195, [1 x i8]* @p_str9195)"   --->   Operation 20 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_7 : Operation 21 [1/7] (8.75ns)   --->   "%x_in_addr_rd_req = call i1 @_ssdm_op_ReadReq.m_axi.doubleP(double* %x_in_addr, i32 12)" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 21 'readreq' 'x_in_addr_rd_req' <Predicate = true> <Delay = 8.75> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_7 : Operation 22 [1/1] (1.76ns)   --->   "br label %1" [../my-conifer-prj/firmware/my_prj.cpp:14]   --->   Operation 22 'br' <Predicate = true> <Delay = 1.76>
+
+State 8 <SV = 7> <Delay = 8.75>
+ST_8 : Operation 23 [1/1] (0.00ns)   --->   "%i_0 = phi i4 [ 0, %0 ], [ %i, %_ifconv ]"   --->   Operation 23 'phi' 'i_0' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 24 [1/1] (1.30ns)   --->   "%icmp_ln14 = icmp eq i4 %i_0, -4" [../my-conifer-prj/firmware/my_prj.cpp:14]   --->   Operation 24 'icmp' 'icmp_ln14' <Predicate = true> <Delay = 1.30> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.99> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 25 [1/1] (0.00ns)   --->   "%empty = call i32 (...)* @_ssdm_op_SpecLoopTripCount(i64 12, i64 12, i64 12)"   --->   Operation 25 'speclooptripcount' 'empty' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 26 [1/1] (1.73ns)   --->   "%i = add i4 %i_0, 1" [../my-conifer-prj/firmware/my_prj.cpp:14]   --->   Operation 26 'add' 'i' <Predicate = true> <Delay = 1.73> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.54> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_8 : Operation 27 [1/1] (0.00ns)   --->   "br i1 %icmp_ln14, label %2, label %_ifconv" [../my-conifer-prj/firmware/my_prj.cpp:14]   --->   Operation 27 'br' <Predicate = true> <Delay = 0.00>
+ST_8 : Operation 28 [1/1] (8.75ns)   --->   "%x_in_addr_read = call double @_ssdm_op_Read.m_axi.doubleP(double* %x_in_addr)" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 28 'read' 'x_in_addr_read' <Predicate = (!icmp_ln14)> <Delay = 8.75> <Core = "m_axi">   --->   Core 9 'm_axi' <Latency = 6> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write' 'readreq' 'writereq' 'writeresp'>
+ST_8 : Operation 29 [1/1] (0.00ns)   --->   "ret void" [../my-conifer-prj/firmware/my_prj.cpp:17]   --->   Operation 29 'ret' <Predicate = (icmp_ln14)> <Delay = 0.00>
+
+State 9 <SV = 8> <Delay = 8.19>
+ST_9 : Operation 30 [1/1] (0.00ns)   --->   "%ireg_V = bitcast double %x_in_addr_read to i64" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 30 'bitcast' 'ireg_V' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 31 [1/1] (0.00ns)   --->   "%trunc_ln556 = trunc i64 %ireg_V to i63" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 31 'trunc' 'trunc_ln556' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 32 [1/1] (0.00ns)   --->   "%p_Result_s = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %ireg_V, i32 63)" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 32 'bitselect' 'p_Result_s' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 33 [1/1] (0.00ns)   --->   "%exp_tmp_V = call i11 @_ssdm_op_PartSelect.i11.i64.i32.i32(i64 %ireg_V, i32 52, i32 62)" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 33 'partselect' 'exp_tmp_V' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 34 [1/1] (0.00ns)   --->   "%zext_ln461 = zext i11 %exp_tmp_V to i12" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 34 'zext' 'zext_ln461' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 35 [1/1] (0.00ns)   --->   "%trunc_ln565 = trunc i64 %ireg_V to i52" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 35 'trunc' 'trunc_ln565' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 36 [1/1] (0.00ns)   --->   "%tmp = call i53 @_ssdm_op_BitConcatenate.i53.i1.i52(i1 true, i52 %trunc_ln565)" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 36 'bitconcatenate' 'tmp' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 37 [1/1] (0.00ns)   --->   "%p_Result_1 = zext i53 %tmp to i54" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 37 'zext' 'p_Result_1' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 38 [1/1] (3.23ns)   --->   "%man_V_1 = sub i54 0, %p_Result_1" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 38 'sub' 'man_V_1' <Predicate = true> <Delay = 3.23> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.54> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 39 [1/1] (0.94ns)   --->   "%man_V_2 = select i1 %p_Result_s, i54 %man_V_1, i54 %p_Result_1" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 39 'select' 'man_V_2' <Predicate = true> <Delay = 0.94> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_9 : Operation 40 [1/1] (2.78ns)   --->   "%icmp_ln571 = icmp eq i63 %trunc_ln556, 0" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 40 'icmp' 'icmp_ln571' <Predicate = true> <Delay = 2.78> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.99> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 41 [1/1] (1.54ns)   --->   "%F2 = sub i12 1075, %zext_ln461" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 41 'sub' 'F2' <Predicate = true> <Delay = 1.54> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.54> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 42 [1/1] (1.99ns)   --->   "%icmp_ln581 = icmp sgt i12 %F2, 8" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 42 'icmp' 'icmp_ln581' <Predicate = true> <Delay = 1.99> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.99> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 43 [1/1] (1.54ns)   --->   "%add_ln581 = add i12 -8, %F2" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 43 'add' 'add_ln581' <Predicate = true> <Delay = 1.54> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.54> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 44 [1/1] (1.54ns)   --->   "%sub_ln581 = sub i12 8, %F2" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 44 'sub' 'sub_ln581' <Predicate = true> <Delay = 1.54> <Core = "AddSub">   --->   Core 14 'AddSub' <Latency = 0> <II = 1> <Delay = 1.54> <FuncUnit> <Opcode : 'add' 'sub'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 45 [1/1] (0.69ns)   --->   "%sh_amt = select i1 %icmp_ln581, i12 %add_ln581, i12 %sub_ln581" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 45 'select' 'sh_amt' <Predicate = true> <Delay = 0.69> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_9 : Operation 46 [1/1] (1.99ns)   --->   "%icmp_ln582 = icmp eq i12 %F2, 8" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 46 'icmp' 'icmp_ln582' <Predicate = true> <Delay = 1.99> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.99> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 47 [1/1] (0.00ns)   --->   "%trunc_ln583 = trunc i54 %man_V_2 to i12" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 47 'trunc' 'trunc_ln583' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 48 [1/1] (1.99ns)   --->   "%icmp_ln585 = icmp ult i12 %sh_amt, 54" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 48 'icmp' 'icmp_ln585' <Predicate = true> <Delay = 1.99> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.99> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 49 [1/1] (1.99ns)   --->   "%icmp_ln603 = icmp ult i12 %sh_amt, 12" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 49 'icmp' 'icmp_ln603' <Predicate = true> <Delay = 1.99> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.99> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 50 [1/1] (0.00ns) (grouped into LUT with out node select_ln603_1)   --->   "%tmp_6 = call i1 @_ssdm_op_BitSelect.i1.i64.i32(i64 %ireg_V, i32 63)" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 50 'bitselect' 'tmp_6' <Predicate = true> <Delay = 0.00>
+ST_9 : Operation 51 [1/1] (0.00ns) (grouped into LUT with out node select_ln603_1)   --->   "%select_ln588 = select i1 %tmp_6, i12 -1, i12 0" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 51 'select' 'select_ln588' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_9 : Operation 52 [1/1] (0.97ns)   --->   "%or_ln582 = or i1 %icmp_ln571, %icmp_ln582" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 52 'or' 'or_ln582' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 53 [1/1] (0.00ns) (grouped into LUT with out node and_ln581)   --->   "%xor_ln582 = xor i1 %or_ln582, true" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 53 'xor' 'xor_ln582' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 54 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln581 = and i1 %icmp_ln581, %xor_ln582" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 54 'and' 'and_ln581' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 55 [1/1] (0.00ns) (grouped into LUT with out node and_ln585)   --->   "%xor_ln585 = xor i1 %icmp_ln585, true" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 55 'xor' 'xor_ln585' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 56 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln585 = and i1 %and_ln581, %xor_ln585" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 56 'and' 'and_ln585' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 57 [1/1] (0.00ns) (grouped into LUT with out node or_ln603)   --->   "%and_ln585_1 = and i1 %and_ln581, %icmp_ln585" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 57 'and' 'and_ln585_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 58 [1/1] (0.00ns) (grouped into LUT with out node and_ln603)   --->   "%or_ln581 = or i1 %or_ln582, %icmp_ln581" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 58 'or' 'or_ln581' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 59 [1/1] (0.00ns) (grouped into LUT with out node and_ln603)   --->   "%xor_ln581 = xor i1 %or_ln581, true" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 59 'xor' 'xor_ln581' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 60 [1/1] (0.97ns) (out node of the LUT)   --->   "%and_ln603 = and i1 %icmp_ln603, %xor_ln581" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 60 'and' 'and_ln603' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 61 [1/1] (0.97ns) (out node of the LUT)   --->   "%or_ln603 = or i1 %and_ln603, %and_ln585_1" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 61 'or' 'or_ln603' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_9 : Operation 62 [1/1] (0.99ns) (out node of the LUT)   --->   "%select_ln603_1 = select i1 %and_ln585, i12 %select_ln588, i12 %trunc_ln583" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 62 'select' 'select_ln603_1' <Predicate = true> <Delay = 0.99> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+
+State 10 <SV = 9> <Delay = 7.63>
+ST_10 : Operation 63 [1/1] (0.00ns)   --->   "%zext_ln15 = zext i4 %i_0 to i64" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 63 'zext' 'zext_ln15' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 64 [1/1] (0.00ns)   --->   "%sext_ln581 = sext i12 %sh_amt to i32" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 64 'sext' 'sext_ln581' <Predicate = (or_ln603)> <Delay = 0.00>
+ST_10 : Operation 65 [1/1] (0.00ns) (grouped into LUT with out node select_ln603)   --->   "%zext_ln586 = zext i32 %sext_ln581 to i54" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 65 'zext' 'zext_ln586' <Predicate = (!and_ln603 & or_ln603)> <Delay = 0.00>
+ST_10 : Operation 66 [1/1] (0.00ns) (grouped into LUT with out node select_ln603)   --->   "%ashr_ln586 = ashr i54 %man_V_2, %zext_ln586" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 66 'ashr' 'ashr_ln586' <Predicate = (!and_ln603 & or_ln603)> <Delay = 0.00> <Core = "Shift">   --->   Core 28 'Shift' <Latency = 0> <II = 1> <Delay = 3.56> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 67 [1/1] (0.00ns) (grouped into LUT with out node select_ln603)   --->   "%trunc_ln586 = trunc i54 %ashr_ln586 to i12" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 67 'trunc' 'trunc_ln586' <Predicate = (!and_ln603 & or_ln603)> <Delay = 0.00>
+ST_10 : Operation 68 [1/1] (0.00ns) (grouped into LUT with out node select_ln603)   --->   "%sext_ln581cast = trunc i32 %sext_ln581 to i12" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 68 'trunc' 'sext_ln581cast' <Predicate = (and_ln603 & or_ln603)> <Delay = 0.00>
+ST_10 : Operation 69 [1/1] (0.00ns) (grouped into LUT with out node select_ln603)   --->   "%shl_ln604 = shl i12 %trunc_ln583, %sext_ln581cast" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 69 'shl' 'shl_ln604' <Predicate = (and_ln603 & or_ln603)> <Delay = 0.00> <Core = "Shift">   --->   Core 28 'Shift' <Latency = 0> <II = 1> <Delay = 3.56> <FuncUnit> <Opcode : 'shl' 'lshr' 'ashr'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 70 [1/1] (0.00ns) (grouped into LUT with out node or_ln603_2)   --->   "%xor_ln571 = xor i1 %icmp_ln571, true" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 70 'xor' 'xor_ln571' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 71 [1/1] (0.00ns) (grouped into LUT with out node or_ln603_2)   --->   "%and_ln582 = and i1 %icmp_ln582, %xor_ln571" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 71 'and' 'and_ln582' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 72 [1/1] (4.61ns) (out node of the LUT)   --->   "%select_ln603 = select i1 %and_ln603, i12 %shl_ln604, i12 %trunc_ln586" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 72 'select' 'select_ln603' <Predicate = (or_ln603)> <Delay = 4.61> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_10 : Operation 73 [1/1] (0.00ns) (grouped into LUT with out node or_ln603_2)   --->   "%or_ln603_1 = or i1 %and_ln585, %and_ln582" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 73 'or' 'or_ln603_1' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 74 [1/1] (0.00ns) (grouped into LUT with out node select_ln603_3)   --->   "%select_ln603_2 = select i1 %or_ln603, i12 %select_ln603, i12 %select_ln603_1" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 74 'select' 'select_ln603_2' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_10 : Operation 75 [1/1] (0.97ns) (out node of the LUT)   --->   "%or_ln603_2 = or i1 %or_ln603, %or_ln603_1" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 75 'or' 'or_ln603_2' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_10 : Operation 76 [1/1] (0.69ns) (out node of the LUT)   --->   "%select_ln603_3 = select i1 %or_ln603_2, i12 %select_ln603_2, i12 0" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 76 'select' 'select_ln603_3' <Predicate = true> <Delay = 0.69> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.69> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_10 : Operation 77 [1/1] (0.00ns)   --->   "%x_int_V_addr = getelementptr [12 x i12]* %x_int_V, i64 0, i64 %zext_ln15" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 77 'getelementptr' 'x_int_V_addr' <Predicate = true> <Delay = 0.00>
+ST_10 : Operation 78 [1/1] (2.32ns)   --->   "store i12 %select_ln603_3, i12* %x_int_V_addr, align 2" [../my-conifer-prj/firmware/my_prj.cpp:15]   --->   Operation 78 'store' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 12> <Depth = 12> <RAM>
+ST_10 : Operation 79 [1/1] (0.00ns)   --->   "br label %1" [../my-conifer-prj/firmware/my_prj.cpp:14]   --->   Operation 79 'br' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 8.75ns
+The critical path consists of the following:
+	wire read on port 'x_in_offset' (../my-conifer-prj/firmware/my_prj.cpp:13) [4]  (0 ns)
+	'getelementptr' operation ('x_in_addr', ../my-conifer-prj/firmware/my_prj.cpp:13) [6]  (0 ns)
+	bus request on port 'x_in' (../my-conifer-prj/firmware/my_prj.cpp:15) [8]  (8.75 ns)
+
+ <State 2>: 8.75ns
+The critical path consists of the following:
+	bus request on port 'x_in' (../my-conifer-prj/firmware/my_prj.cpp:15) [8]  (8.75 ns)
+
+ <State 3>: 8.75ns
+The critical path consists of the following:
+	bus request on port 'x_in' (../my-conifer-prj/firmware/my_prj.cpp:15) [8]  (8.75 ns)
+
+ <State 4>: 8.75ns
+The critical path consists of the following:
+	bus request on port 'x_in' (../my-conifer-prj/firmware/my_prj.cpp:15) [8]  (8.75 ns)
+
+ <State 5>: 8.75ns
+The critical path consists of the following:
+	bus request on port 'x_in' (../my-conifer-prj/firmware/my_prj.cpp:15) [8]  (8.75 ns)
+
+ <State 6>: 8.75ns
+The critical path consists of the following:
+	bus request on port 'x_in' (../my-conifer-prj/firmware/my_prj.cpp:15) [8]  (8.75 ns)
+
+ <State 7>: 8.75ns
+The critical path consists of the following:
+	bus request on port 'x_in' (../my-conifer-prj/firmware/my_prj.cpp:15) [8]  (8.75 ns)
+
+ <State 8>: 8.75ns
+The critical path consists of the following:
+	bus read on port 'x_in' (../my-conifer-prj/firmware/my_prj.cpp:15) [18]  (8.75 ns)
+
+ <State 9>: 8.2ns
+The critical path consists of the following:
+	'sub' operation ('F2', ../my-conifer-prj/firmware/my_prj.cpp:15) [30]  (1.55 ns)
+	'icmp' operation ('icmp_ln581', ../my-conifer-prj/firmware/my_prj.cpp:15) [31]  (1.99 ns)
+	'select' operation ('sh_amt', ../my-conifer-prj/firmware/my_prj.cpp:15) [34]  (0.697 ns)
+	'icmp' operation ('icmp_ln585', ../my-conifer-prj/firmware/my_prj.cpp:15) [38]  (1.99 ns)
+	'xor' operation ('xor_ln585', ../my-conifer-prj/firmware/my_prj.cpp:15) [52]  (0 ns)
+	'and' operation ('and_ln585', ../my-conifer-prj/firmware/my_prj.cpp:15) [53]  (0.978 ns)
+	'select' operation ('select_ln603_1', ../my-conifer-prj/firmware/my_prj.cpp:15) [60]  (0.993 ns)
+
+ <State 10>: 7.63ns
+The critical path consists of the following:
+	'shl' operation ('shl_ln604', ../my-conifer-prj/firmware/my_prj.cpp:15) [46]  (0 ns)
+	'select' operation ('select_ln603', ../my-conifer-prj/firmware/my_prj.cpp:15) [58]  (4.61 ns)
+	'select' operation ('select_ln603_2', ../my-conifer-prj/firmware/my_prj.cpp:15) [62]  (0 ns)
+	'select' operation ('select_ln603_3', ../my-conifer-prj/firmware/my_prj.cpp:15) [64]  (0.697 ns)
+	'store' operation ('store_ln15', ../my-conifer-prj/firmware/my_prj.cpp:15) of variable 'select_ln603_3', ../my-conifer-prj/firmware/my_prj.cpp:15 on array 'x_int_V' [66]  (2.32 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+	State 7
+	State 8
+	State 9
+	State 10
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

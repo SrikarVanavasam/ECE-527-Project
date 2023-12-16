@@ -1,0 +1,213 @@
+
+
+================================================================
+== Vivado HLS Report for 'my_prj_accelerator'
+================================================================
+* Date:           Mon Dec 11 23:07:53 2023
+
+* Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
+* Project:        Final_HLS
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|     8.750|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |  548|  548|  548|  548|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +--------------------------------+----------------------+-----+-----+-----+-----+---------+
+        |                                |                      |  Latency  |  Interval | Pipeline|
+        |            Instance            |        Module        | min | max | min | max |   Type  |
+        +--------------------------------+----------------------+-----+-----+-----+-----+---------+
+        |grp_decision_function_90_fu_74  |decision_function_90  |  491|  491|  491|  491|   none  |
+        |grp_copy_output_fu_79           |copy_output           |    9|    9|    9|    9|   none  |
+        |grp_copy_input_fu_88            |copy_input            |   43|   43|   43|   43|   none  |
+        +--------------------------------+----------------------+-----+-----+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+-----+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  | URAM|
++-----------------+---------+-------+--------+-------+-----+
+|DSP              |        -|      -|       -|      -|    -|
+|Expression       |        -|      -|       -|      -|    -|
+|FIFO             |        -|      -|       -|      -|    -|
+|Instance         |        4|      -|    5802|  66749|    -|
+|Memory           |        0|      -|      24|      3|    0|
+|Multiplexer      |        -|      -|       -|    131|    -|
+|Register         |        -|      -|      79|      -|    -|
++-----------------+---------+-------+--------+-------+-----+
+|Total            |        4|      0|    5905|  66883|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Available        |      280|    220|  106400|  53200|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Utilization (%)  |        1|      0|       5|    125|    0|
++-----------------+---------+-------+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +------------------------------------+----------------------------------+---------+-------+------+-------+-----+
+    |              Instance              |              Module              | BRAM_18K| DSP48E|  FF  |  LUT  | URAM|
+    +------------------------------------+----------------------------------+---------+-------+------+-------+-----+
+    |grp_copy_input_fu_88                |copy_input                        |        0|      0|   177|    612|    0|
+    |grp_copy_output_fu_79               |copy_output                       |        0|      0|   269|    941|    0|
+    |grp_decision_function_90_fu_74      |decision_function_90              |        0|      0|  4678|  64262|    0|
+    |my_prj_accelerator_control_s_axi_U  |my_prj_accelerator_control_s_axi  |        0|      0|   112|    168|    0|
+    |my_prj_accelerator_gmem_m_axi_U     |my_prj_accelerator_gmem_m_axi     |        4|      0|   566|    766|    0|
+    +------------------------------------+----------------------------------+---------+-------+------+-------+-----+
+    |Total                               |                                  |        4|      0|  5802|  66749|    0|
+    +------------------------------------+----------------------------------+---------+-------+------+-------+-----+
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    +-----------+----------------------+---------+----+----+-----+------+-----+------+-------------+
+    |   Memory  |        Module        | BRAM_18K| FF | LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +-----------+----------------------+---------+----+----+-----+------+-----+------+-------------+
+    |x_int_V_U  |my_prj_acceleratofYi  |        0|  24|   3|    0|    12|   12|     1|          144|
+    +-----------+----------------------+---------+----+----+-----+------+-----+------+-------------+
+    |Total      |                      |        0|  24|   3|    0|    12|   12|     1|          144|
+    +-----------+----------------------+---------+----+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    +------------------+----+-----------+-----+-----------+
+    |       Name       | LUT| Input Size| Bits| Total Bits|
+    +------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm         |  38|          7|    1|          7|
+    |gmem_ARVALID      |   9|          2|    1|          2|
+    |gmem_AWVALID      |   9|          2|    1|          2|
+    |gmem_BREADY       |   9|          2|    1|          2|
+    |gmem_RREADY       |   9|          2|    1|          2|
+    |gmem_WVALID       |   9|          2|    1|          2|
+    |x_int_V_address0  |  15|          3|    4|         12|
+    |x_int_V_ce0       |  15|          3|    1|          3|
+    |x_int_V_ce1       |   9|          2|    1|          2|
+    |x_int_V_we0       |   9|          2|    1|          2|
+    +------------------+----+-----------+-----+-----------+
+    |Total             | 131|         27|   13|         36|
+    +------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +---------------------------------------------+----+----+-----+-----------+
+    |                     Name                    | FF | LUT| Bits| Const Bits|
+    +---------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                    |   6|   0|    6|          0|
+    |grp_copy_input_fu_88_ap_start_reg            |   1|   0|    1|          0|
+    |grp_copy_output_fu_79_ap_start_reg           |   1|   0|    1|          0|
+    |grp_decision_function_90_fu_74_ap_start_reg  |   1|   0|    1|          0|
+    |score3_reg_116                               |  29|   0|   29|          0|
+    |score_int_0_V_reg_126                        |  12|   0|   12|          0|
+    |x1_reg_121                                   |  29|   0|   29|          0|
+    +---------------------------------------------+----+----+-----+-----------+
+    |Total                                        |  79|   0|   79|          0|
+    +---------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+--------------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  |    Source Object   |    C Type    |
++-----------------------+-----+-----+------------+--------------------+--------------+
+|s_axi_control_AWVALID  |  in |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_AWREADY  | out |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_AWADDR   |  in |    5|    s_axi   |       control      |    scalar    |
+|s_axi_control_WVALID   |  in |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_WREADY   | out |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_WDATA    |  in |   32|    s_axi   |       control      |    scalar    |
+|s_axi_control_WSTRB    |  in |    4|    s_axi   |       control      |    scalar    |
+|s_axi_control_ARVALID  |  in |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_ARREADY  | out |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_ARADDR   |  in |    5|    s_axi   |       control      |    scalar    |
+|s_axi_control_RVALID   | out |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_RREADY   |  in |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_RDATA    | out |   32|    s_axi   |       control      |    scalar    |
+|s_axi_control_RRESP    | out |    2|    s_axi   |       control      |    scalar    |
+|s_axi_control_BVALID   | out |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_BREADY   |  in |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_BRESP    | out |    2|    s_axi   |       control      |    scalar    |
+|ap_clk                 |  in |    1| ap_ctrl_hs | my_prj_accelerator | return value |
+|ap_rst_n               |  in |    1| ap_ctrl_hs | my_prj_accelerator | return value |
+|interrupt              | out |    1| ap_ctrl_hs | my_prj_accelerator | return value |
+|m_axi_gmem_AWVALID     | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWREADY     |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWADDR      | out |   32|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWID        | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWLEN       | out |    8|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWSIZE      | out |    3|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWBURST     | out |    2|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWLOCK      | out |    2|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWCACHE     | out |    4|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWPROT      | out |    3|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWQOS       | out |    4|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWREGION    | out |    4|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWUSER      | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_WVALID      | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_WREADY      |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_WDATA       | out |   64|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_WSTRB       | out |    8|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_WLAST       | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_WID         | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_WUSER       | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARVALID     | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARREADY     |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARADDR      | out |   32|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARID        | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARLEN       | out |    8|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARSIZE      | out |    3|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARBURST     | out |    2|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARLOCK      | out |    2|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARCACHE     | out |    4|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARPROT      | out |    3|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARQOS       | out |    4|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARREGION    | out |    4|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARUSER      | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_RVALID      |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_RREADY      | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_RDATA       |  in |   64|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_RLAST       |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_RID         |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_RUSER       |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_RRESP       |  in |    2|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_BVALID      |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_BREADY      | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_BRESP       |  in |    2|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_BID         |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_BUSER       |  in |    1|    m_axi   |        gmem        |    pointer   |
++-----------------------+-----+-----+------------+--------------------+--------------+
+

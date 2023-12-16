@@ -1,0 +1,160 @@
+
+
+================================================================
+== Vivado HLS Report for 'my_prj_accelerator'
+================================================================
+* Date:           Mon Dec 11 23:06:09 2023
+
+* Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
+* Project:        Final_HLS
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|     8.750|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |  548|  548|  548|  548|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 6
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 1.00>
+ST_1 : Operation 7 [1/1] (1.00ns)   --->   "%score_read = call i32 @_ssdm_op_Read.s_axilite.i32(i32 %score)"   --->   Operation 7 'read' 'score_read' <Predicate = true> <Delay = 1.00> <Core = "s_axilite">   --->   Core 10 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_1 : Operation 8 [1/1] (1.00ns)   --->   "%x_read = call i32 @_ssdm_op_Read.s_axilite.i32(i32 %x)"   --->   Operation 8 'read' 'x_read' <Predicate = true> <Delay = 1.00> <Core = "s_axilite">   --->   Core 10 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%score3 = call i29 @_ssdm_op_PartSelect.i29.i32.i32.i32(i32 %score_read, i32 3, i32 31)"   --->   Operation 9 'partselect' 'score3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%x1 = call i29 @_ssdm_op_PartSelect.i29.i32.i32.i32(i32 %x_read, i32 3, i32 31)"   --->   Operation 10 'partselect' 'x1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (0.00ns)   --->   "%x_int_V = alloca [12 x i12], align 2" [../my-conifer-prj/firmware/my_prj.cpp:33]   --->   Operation 11 'alloca' 'x_int_V' <Predicate = true> <Delay = 0.00>
+
+State 2 <SV = 1> <Delay = 8.75>
+ST_2 : Operation 12 [2/2] (8.75ns)   --->   "call fastcc void @copy_input(double* %gmem, i29 %x1, [12 x i12]* nocapture %x_int_V)" [../my-conifer-prj/firmware/my_prj.cpp:35]   --->   Operation 12 'call' <Predicate = true> <Delay = 8.75> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 13 [1/2] (0.00ns)   --->   "call fastcc void @copy_input(double* %gmem, i29 %x1, [12 x i12]* nocapture %x_int_V)" [../my-conifer-prj/firmware/my_prj.cpp:35]   --->   Operation 13 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 14 [2/2] (0.00ns)   --->   "%score_int_0_V = call fastcc i12 @decision_function.90([12 x i12]* %x_int_V) nounwind" [../my-conifer-prj/firmware/my_prj.cpp:36]   --->   Operation 14 'call' 'score_int_0_V' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 8.75>
+ST_5 : Operation 15 [1/2] (0.00ns)   --->   "%score_int_0_V = call fastcc i12 @decision_function.90([12 x i12]* %x_int_V) nounwind" [../my-conifer-prj/firmware/my_prj.cpp:36]   --->   Operation 15 'call' 'score_int_0_V' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_5 : Operation 16 [2/2] (8.75ns)   --->   "call fastcc void @copy_output(i12 %score_int_0_V, double* %gmem, i29 %score3)" [../my-conifer-prj/firmware/my_prj.cpp:37]   --->   Operation 16 'call' <Predicate = true> <Delay = 8.75> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 6 <SV = 5> <Delay = 0.00>
+ST_6 : Operation 17 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(double* %gmem), !map !103"   --->   Operation 17 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 18 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([19 x i8]* @my_prj_accelerator_s) nounwind"   --->   Operation 18 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 19 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(double* %gmem, [6 x i8]* @p_str9296, i32 0, i32 0, [1 x i8]* @p_str9195, i32 0, i32 12, [5 x i8]* @p_str9397, [6 x i8]* @p_str9498, [1 x i8]* @p_str9195, i32 16, i32 16, i32 16, i32 16, [1 x i8]* @p_str9195, [1 x i8]* @p_str9195) nounwind" [../my-conifer-prj/firmware/my_prj.cpp:26]   --->   Operation 19 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 20 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 %x, [10 x i8]* @mode, i32 0, i32 0, [1 x i8]* @p_str9195, i32 0, i32 12, [1 x i8]* @bundle, [6 x i8]* @p_str9498, [1 x i8]* @p_str9195, i32 16, i32 16, i32 16, i32 16, [1 x i8]* @p_str9195, [1 x i8]* @p_str9195) nounwind" [../my-conifer-prj/firmware/my_prj.cpp:26]   --->   Operation 20 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 21 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 %score, [10 x i8]* @mode1, i32 0, i32 0, [1 x i8]* @p_str9195, i32 0, i32 2, [1 x i8]* @bundle2, [6 x i8]* @p_str9498, [1 x i8]* @p_str9195, i32 16, i32 16, i32 16, i32 16, [1 x i8]* @p_str9195, [1 x i8]* @p_str9195) nounwind" [../my-conifer-prj/firmware/my_prj.cpp:27]   --->   Operation 21 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 22 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 0, [10 x i8]* @p_str95, i32 0, i32 0, [1 x i8]* @p_str9195, i32 0, i32 0, [8 x i8]* @p_str96, [1 x i8]* @p_str9195, [1 x i8]* @p_str9195, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str9195, [1 x i8]* @p_str9195) nounwind" [../my-conifer-prj/firmware/my_prj.cpp:28]   --->   Operation 22 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 23 [1/2] (0.00ns)   --->   "call fastcc void @copy_output(i12 %score_int_0_V, double* %gmem, i29 %score3)" [../my-conifer-prj/firmware/my_prj.cpp:37]   --->   Operation 23 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_6 : Operation 24 [1/1] (0.00ns)   --->   "ret void" [../my-conifer-prj/firmware/my_prj.cpp:39]   --->   Operation 24 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 1ns
+The critical path consists of the following:
+	s_axi read on port 'score' [4]  (1 ns)
+
+ <State 2>: 8.75ns
+The critical path consists of the following:
+	'call' operation ('call_ln35', ../my-conifer-prj/firmware/my_prj.cpp:35) to 'copy_input' [15]  (8.75 ns)
+
+ <State 3>: 0ns
+The critical path consists of the following:
+
+ <State 4>: 0ns
+The critical path consists of the following:
+
+ <State 5>: 8.75ns
+The critical path consists of the following:
+	'call' operation ('score_int[0].V', ../my-conifer-prj/firmware/my_prj.cpp:36) to 'decision_function.90' [16]  (0 ns)
+	'call' operation ('call_ln37', ../my-conifer-prj/firmware/my_prj.cpp:37) to 'copy_output' [17]  (8.75 ns)
+
+ <State 6>: 0ns
+The critical path consists of the following:
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+	State 6
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

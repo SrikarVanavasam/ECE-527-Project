@@ -1,0 +1,188 @@
+
+
+================================================================
+== Vivado HLS Report for 'decision_function_73'
+================================================================
+* Date:           Mon Dec 11 23:04:38 2023
+
+* Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
+* Project:        Final_HLS
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|     6.408|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+----------+
+    |  Latency  |  Interval | Pipeline |
+    | min | max | min | max |   Type   |
+    +-----+-----+-----+-----+----------+
+    |    3|    3|    2|    2| function |
+    +-----+-----+-----+-----+----------+
+
+    + Detail: 
+        * Instance: 
+        N/A
+
+        * Loop: 
+        N/A
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 0
+ResetActiveHigh: 1
+IsCombinational: 0
+IsDatapathOnly: 0
+HasWiredReturn: 1
+HasMFsm: 2
+HasVarLatency: 0
+IsPipeline: 1
+IsRtlPipelined: 1
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
++ Individual pipeline summary: 
+  * Pipeline-0: initiation interval (II) = 2, depth = 4
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 4
+* Pipeline : 1
+  Pipeline-0 : II = 2, D = 4, States = { 1 2 3 4 }
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.32>
+ST_1 : Operation 5 [1/1] (0.00ns)   --->   "%x_V_addr = getelementptr [12 x i12]* %x_V, i64 0, i64 3" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 5 'getelementptr' 'x_V_addr' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 6 [2/2] (2.32ns)   --->   "%x_V_load = load i12* %x_V_addr, align 2" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 6 'load' 'x_V_load' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 12> <Depth = 12> <RAM>
+ST_1 : Operation 7 [1/1] (0.00ns)   --->   "%x_V_addr_66 = getelementptr [12 x i12]* %x_V, i64 0, i64 0" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 7 'getelementptr' 'x_V_addr_66' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 8 [2/2] (2.32ns)   --->   "%x_V_load_1 = load i12* %x_V_addr_66, align 2" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 8 'load' 'x_V_load_1' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 12> <Depth = 12> <RAM>
+
+State 2 <SV = 1> <Delay = 4.31>
+ST_2 : Operation 9 [1/2] (2.32ns)   --->   "%x_V_load = load i12* %x_V_addr, align 2" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 9 'load' 'x_V_load' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 12> <Depth = 12> <RAM>
+ST_2 : Operation 10 [1/1] (1.99ns)   --->   "%icmp_ln1497 = icmp slt i12 %x_V_load, 513" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 10 'icmp' 'icmp_ln1497' <Predicate = true> <Delay = 1.99> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.99> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 11 [1/2] (2.32ns)   --->   "%x_V_load_1 = load i12* %x_V_addr_66, align 2" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 11 'load' 'x_V_load_1' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 12> <Depth = 12> <RAM>
+ST_2 : Operation 12 [1/1] (1.99ns)   --->   "%icmp_ln1497_1 = icmp slt i12 %x_V_load_1, 1" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 12 'icmp' 'icmp_ln1497_1' <Predicate = true> <Delay = 1.99> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.99> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 13 [1/1] (1.99ns)   --->   "%icmp_ln1497_2 = icmp slt i12 %x_V_load, 897" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 13 'icmp' 'icmp_ln1497_2' <Predicate = true> <Delay = 1.99> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.99> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_2 : Operation 14 [1/1] (0.00ns)   --->   "%x_V_addr_67 = getelementptr [12 x i12]* %x_V, i64 0, i64 9" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 14 'getelementptr' 'x_V_addr_67' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 15 [2/2] (2.32ns)   --->   "%x_V_load_5 = load i12* %x_V_addr_67, align 2" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 15 'load' 'x_V_load_5' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 12> <Depth = 12> <RAM>
+ST_2 : Operation 16 [1/1] (0.00ns)   --->   "%x_V_addr_68 = getelementptr [12 x i12]* %x_V, i64 0, i64 5" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 16 'getelementptr' 'x_V_addr_68' <Predicate = true> <Delay = 0.00>
+ST_2 : Operation 17 [2/2] (2.32ns)   --->   "%x_V_load_9 = load i12* %x_V_addr_68, align 2" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 17 'load' 'x_V_load_9' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 12> <Depth = 12> <RAM>
+ST_2 : Operation 18 [1/1] (1.99ns)   --->   "%icmp_ln1497_12 = icmp slt i12 %x_V_load, -383" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 18 'icmp' 'icmp_ln1497_12' <Predicate = true> <Delay = 1.99> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.99> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+
+State 3 <SV = 2> <Delay = 4.31>
+ST_3 : Operation 19 [1/2] (2.32ns)   --->   "%x_V_load_5 = load i12* %x_V_addr_67, align 2" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 19 'load' 'x_V_load_5' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 12> <Depth = 12> <RAM>
+ST_3 : Operation 20 [1/1] (1.99ns)   --->   "%icmp_ln1497_5 = icmp slt i12 %x_V_load_5, -383" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 20 'icmp' 'icmp_ln1497_5' <Predicate = (icmp_ln1497)> <Delay = 1.99> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.99> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 21 [1/1] (1.99ns)   --->   "%icmp_ln1497_8 = icmp slt i12 %x_V_load_5, -1151" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 21 'icmp' 'icmp_ln1497_8' <Predicate = true> <Delay = 1.99> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.99> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+ST_3 : Operation 22 [1/2] (2.32ns)   --->   "%x_V_load_9 = load i12* %x_V_addr_68, align 2" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 22 'load' 'x_V_load_9' <Predicate = true> <Delay = 2.32> <Core = "RAM">   --->   Core 37 'RAM' <Latency = 1> <II = 1> <Delay = 2.32> <Storage> <Opcode : 'load' 'store'> <Ports = 2> <Width = 12> <Depth = 12> <RAM>
+ST_3 : Operation 23 [1/1] (1.99ns)   --->   "%icmp_ln1497_9 = icmp slt i12 %x_V_load_9, 257" [../my-conifer-prj/firmware/BDT.h:57]   --->   Operation 23 'icmp' 'icmp_ln1497_9' <Predicate = true> <Delay = 1.99> <Core = "Cmp">   --->   Core 25 'Cmp' <Latency = 0> <II = 1> <Delay = 1.99> <FuncUnit> <Opcode : 'icmp'> <InPorts = 2> <OutPorts = 1>
+
+State 4 <SV = 3> <Delay = 6.40>
+ST_4 : Operation 24 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecPipeline(i32 1, i32 1, i32 1, i32 0, [1 x i8]* @p_str) nounwind" [../my-conifer-prj/firmware/BDT.h:25]   --->   Operation 24 'specpipeline' <Predicate = true> <Delay = 0.00>
+ST_4 : Operation 25 [1/1] (0.97ns)   --->   "%and_ln73 = and i1 %icmp_ln1497_1, %icmp_ln1497" [../my-conifer-prj/firmware/BDT.h:73]   --->   Operation 25 'and' 'and_ln73' <Predicate = (icmp_ln1497)> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 26 [1/1] (0.00ns) (grouped into LUT with out node select_ln89_82)   --->   "%and_ln73_108 = and i1 %icmp_ln1497_2, %and_ln73" [../my-conifer-prj/firmware/BDT.h:73]   --->   Operation 26 'and' 'and_ln73_108' <Predicate = (icmp_ln1497)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 27 [1/1] (0.00ns) (grouped into LUT with out node or_ln88)   --->   "%xor_ln75 = xor i1 %icmp_ln1497_1, true" [../my-conifer-prj/firmware/BDT.h:75]   --->   Operation 27 'xor' 'xor_ln75' <Predicate = (icmp_ln1497)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 28 [1/1] (0.00ns) (grouped into LUT with out node or_ln88)   --->   "%and_ln73_109 = and i1 %icmp_ln1497_5, %xor_ln75" [../my-conifer-prj/firmware/BDT.h:73]   --->   Operation 28 'and' 'and_ln73_109' <Predicate = (icmp_ln1497)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 29 [1/1] (0.00ns) (grouped into LUT with out node or_ln88)   --->   "%and_ln73_110 = and i1 %and_ln73_109, %icmp_ln1497" [../my-conifer-prj/firmware/BDT.h:73]   --->   Operation 29 'and' 'and_ln73_110' <Predicate = (icmp_ln1497)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 30 [1/1] (0.97ns)   --->   "%xor_ln75_33 = xor i1 %icmp_ln1497, true" [../my-conifer-prj/firmware/BDT.h:75]   --->   Operation 30 'xor' 'xor_ln75_33' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 31 [1/1] (0.97ns)   --->   "%and_ln73_111 = and i1 %icmp_ln1497_8, %xor_ln75_33" [../my-conifer-prj/firmware/BDT.h:73]   --->   Operation 31 'and' 'and_ln73_111' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 32 [1/1] (0.00ns) (grouped into LUT with out node select_ln89_84)   --->   "%and_ln73_112 = and i1 %icmp_ln1497_9, %and_ln73_111" [../my-conifer-prj/firmware/BDT.h:73]   --->   Operation 32 'and' 'and_ln73_112' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 33 [1/1] (0.00ns) (grouped into LUT with out node tmp)   --->   "%xor_ln75_34 = xor i1 %icmp_ln1497_8, true" [../my-conifer-prj/firmware/BDT.h:75]   --->   Operation 33 'xor' 'xor_ln75_34' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 34 [1/1] (0.00ns) (grouped into LUT with out node tmp)   --->   "%and_ln73_113 = and i1 %icmp_ln1497_12, %xor_ln75_33" [../my-conifer-prj/firmware/BDT.h:73]   --->   Operation 34 'and' 'and_ln73_113' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 35 [1/1] (0.00ns) (grouped into LUT with out node tmp)   --->   "%and_ln73_114 = and i1 %and_ln73_113, %xor_ln75_34" [../my-conifer-prj/firmware/BDT.h:73]   --->   Operation 35 'and' 'and_ln73_114' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 36 [1/1] (0.97ns) (out node of the LUT)   --->   "%or_ln88 = or i1 %and_ln73, %and_ln73_110" [../my-conifer-prj/firmware/BDT.h:88]   --->   Operation 36 'or' 'or_ln88' <Predicate = (icmp_ln1497)> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 37 [1/1] (0.00ns) (grouped into LUT with out node select_ln89_84)   --->   "%or_ln88_49 = or i1 %icmp_ln1497, %and_ln73_112" [../my-conifer-prj/firmware/BDT.h:88]   --->   Operation 37 'or' 'or_ln88_49' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 38 [1/1] (0.97ns)   --->   "%or_ln88_50 = or i1 %icmp_ln1497, %and_ln73_111" [../my-conifer-prj/firmware/BDT.h:88]   --->   Operation 38 'or' 'or_ln88_50' <Predicate = true> <Delay = 0.97> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 39 [1/1] (0.00ns) (grouped into LUT with out node tmp)   --->   "%or_ln88_51 = or i1 %or_ln88_50, %and_ln73_114" [../my-conifer-prj/firmware/BDT.h:88]   --->   Operation 39 'or' 'or_ln88_51' <Predicate = true> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 40 [1/1] (0.00ns) (grouped into LUT with out node select_ln89_82)   --->   "%xor_ln89 = xor i1 %and_ln73_108, true" [../my-conifer-prj/firmware/BDT.h:89]   --->   Operation 40 'xor' 'xor_ln89' <Predicate = (icmp_ln1497)> <Delay = 0.00> <Core = "LogicGate">   --->   Core 27 'LogicGate' <Latency = 0> <II = 1> <Delay = 0.97> <FuncUnit> <Opcode : 'and' 'or' 'xor'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 41 [1/1] (0.00ns) (grouped into LUT with out node select_ln89_82)   --->   "%zext_ln89 = zext i1 %xor_ln89 to i2" [../my-conifer-prj/firmware/BDT.h:89]   --->   Operation 41 'zext' 'zext_ln89' <Predicate = (icmp_ln1497)> <Delay = 0.00>
+ST_4 : Operation 42 [1/1] (0.00ns) (grouped into LUT with out node select_ln89_82)   --->   "%select_ln89 = select i1 %and_ln73, i2 %zext_ln89, i2 -2" [../my-conifer-prj/firmware/BDT.h:89]   --->   Operation 42 'select' 'select_ln89' <Predicate = (icmp_ln1497)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.98> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_4 : Operation 43 [1/1] (0.00ns) (grouped into LUT with out node select_ln89_82)   --->   "%select_ln89_81 = select i1 %or_ln88, i2 %select_ln89, i2 -1" [../my-conifer-prj/firmware/BDT.h:89]   --->   Operation 43 'select' 'select_ln89_81' <Predicate = (icmp_ln1497)> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.98> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_4 : Operation 44 [1/1] (0.00ns) (grouped into LUT with out node select_ln89_82)   --->   "%zext_ln89_12 = zext i2 %select_ln89_81 to i3" [../my-conifer-prj/firmware/BDT.h:89]   --->   Operation 44 'zext' 'zext_ln89_12' <Predicate = (icmp_ln1497)> <Delay = 0.00>
+ST_4 : Operation 45 [1/1] (0.99ns) (out node of the LUT)   --->   "%select_ln89_82 = select i1 %icmp_ln1497, i3 %zext_ln89_12, i3 -4" [../my-conifer-prj/firmware/BDT.h:89]   --->   Operation 45 'select' 'select_ln89_82' <Predicate = true> <Delay = 0.99> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.98> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_4 : Operation 46 [1/1] (0.00ns) (grouped into LUT with out node select_ln89_84)   --->   "%select_ln89_83 = select i1 %or_ln88_49, i3 %select_ln89_82, i3 -3" [../my-conifer-prj/firmware/BDT.h:89]   --->   Operation 46 'select' 'select_ln89_83' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.98> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_4 : Operation 47 [1/1] (0.98ns) (out node of the LUT)   --->   "%select_ln89_84 = select i1 %or_ln88_50, i3 %select_ln89_83, i3 -2" [../my-conifer-prj/firmware/BDT.h:89]   --->   Operation 47 'select' 'select_ln89_84' <Predicate = true> <Delay = 0.98> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.98> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_4 : Operation 48 [1/1] (0.00ns) (grouped into LUT with out node tmp)   --->   "%select_ln89_85 = select i1 %or_ln88_51, i3 %select_ln89_84, i3 -1" [../my-conifer-prj/firmware/BDT.h:89]   --->   Operation 48 'select' 'select_ln89_85' <Predicate = true> <Delay = 0.00> <Core = "Sel">   --->   Core 26 'Sel' <Latency = 0> <II = 1> <Delay = 0.98> <FuncUnit> <Opcode : 'select'> <InPorts = 3> <OutPorts = 1>
+ST_4 : Operation 49 [1/1] (2.47ns) (out node of the LUT)   --->   "%tmp = call i12 @_ssdm_op_Mux.ap_auto.8i12.i3(i12 24, i12 48, i12 -19, i12 -57, i12 -28, i12 73, i12 26, i12 -31, i3 %select_ln89_85)" [../my-conifer-prj/firmware/BDT.h:89]   --->   Operation 49 'mux' 'tmp' <Predicate = true> <Delay = 2.47> <Core = "MuxnS">   --->   Core 31 'MuxnS' <Latency = 0> <II = 1> <Delay = 2.47> <FuncUnit> <Opcode : 'mux'> <InPorts = 2> <OutPorts = 1>
+ST_4 : Operation 50 [1/1] (0.00ns)   --->   "ret i12 %tmp" [../my-conifer-prj/firmware/BDT.h:93]   --->   Operation 50 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Timing violations
+============================================================
+Target clock period: 10ns, clock uncertainty: 1.25ns.
+
+ <State 1>: 2.32ns
+The critical path consists of the following:
+	'getelementptr' operation ('x_V_addr', ../my-conifer-prj/firmware/BDT.h:57) [3]  (0 ns)
+	'load' operation ('x_V_load', ../my-conifer-prj/firmware/BDT.h:57) on array 'x_V' [4]  (2.32 ns)
+
+ <State 2>: 4.31ns
+The critical path consists of the following:
+	'load' operation ('x_V_load', ../my-conifer-prj/firmware/BDT.h:57) on array 'x_V' [4]  (2.32 ns)
+	'icmp' operation ('icmp_ln1497', ../my-conifer-prj/firmware/BDT.h:57) [5]  (1.99 ns)
+
+ <State 3>: 4.31ns
+The critical path consists of the following:
+	'load' operation ('x_V_load_5', ../my-conifer-prj/firmware/BDT.h:57) on array 'x_V' [11]  (2.32 ns)
+	'icmp' operation ('icmp_ln1497_5', ../my-conifer-prj/firmware/BDT.h:57) [12]  (1.99 ns)
+
+ <State 4>: 6.41ns
+The critical path consists of the following:
+	'and' operation ('and_ln73', ../my-conifer-prj/firmware/BDT.h:73) [18]  (0.978 ns)
+	'or' operation ('or_ln88', ../my-conifer-prj/firmware/BDT.h:88) [29]  (0.978 ns)
+	'select' operation ('select_ln89_81', ../my-conifer-prj/firmware/BDT.h:89) [36]  (0 ns)
+	'select' operation ('select_ln89_82', ../my-conifer-prj/firmware/BDT.h:89) [38]  (0.993 ns)
+	'select' operation ('select_ln89_83', ../my-conifer-prj/firmware/BDT.h:89) [39]  (0 ns)
+	'select' operation ('select_ln89_84', ../my-conifer-prj/firmware/BDT.h:89) [40]  (0.98 ns)
+	'select' operation ('select_ln89_85', ../my-conifer-prj/firmware/BDT.h:89) [41]  (0 ns)
+	'mux' operation ('tmp', ../my-conifer-prj/firmware/BDT.h:89) [42]  (2.48 ns)
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+N/A
+* FSMD analyzer results:
+  - Output states:
+ - Input state : 
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+N/A

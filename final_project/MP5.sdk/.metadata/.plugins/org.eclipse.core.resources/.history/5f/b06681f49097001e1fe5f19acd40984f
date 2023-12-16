@@ -1,0 +1,288 @@
+// ECE527 Fall 2017
+// University of Illinois, Urbana-Champaign
+// Author - Sitao Huang, Ashutosh Dhar
+// Revised Fall 2020 by Mang Yu
+// Demo code of LeNet Convolutional Neural Network
+// *****************************************
+// Before running the code make that the following files are on the SD card
+// 1. images.bin
+// 2. labels.bin
+// 3. params.bin
+// This code demos inference on the MNIST dataset with a LeNet CNN
+// Provided network parameters have been training already and should give an
+// accuracy of ~98.39%
+
+#include "ff.h" /* FAT File System */
+#include "stdio.h"
+#include "xil_cache.h"
+#include "xil_printf.h"
+#include "xmy_prj_accelerator.h"
+#include "xparameters.h" /* SDK generated parameters */
+#include "xplatform_info.h"
+#include "xsdps.h" /* SD device driver */
+#include "xtmrctr.h"
+
+// Timer variables to measure time
+u32 timerCount_Stop;
+u32 timerCount_Start;
+
+// AXI device object for AXI Timer
+XTmrCtr timer;
+#define TMRCTR_DEVICE_ID XPAR_AXI_TIMER_0_DEVICE_ID
+
+// Max number of test cases in LeNet is 10K
+// You can reduce this for testing/debugging
+// Final report must use all 10000 test cases
+#define NUM_TESTS 10000
+
+// SD card and file reading objects
+static FIL fil; /* File object */
+static FATFS fatfs;
+static char *SD_File;
+u32 Platform;
+
+// Static allocation of test images
+unsigned char images[NUM_TESTS * 28 * 28];
+unsigned char labels[NUM_TESTS];
+float images_padded[NUM_TESTS][32][32];
+// *****************************************
+
+// Static allocation of image and output
+float image[1][32][32] = {0};
+float output[NUM_TESTS][10] = {0};
+
+// Parse MNIST test images
+int parse_mnist_images(char *filename, unsigned char *images) {
+  FRESULT Res;
+  UINT NumBytesRead;
+  SD_File = (char *)filename;
+  unsigned int header[4];
+
+  Res = f_open(&fil, SD_File, FA_READ);
+  if (Res) {
+    xil_printf("ERROR when opening mnist images data file!\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Opened mnist images data file\n\r");
+  }
+
+  Res = f_lseek(&fil, 0);
+  if (Res) {
+    xil_printf("Cant seek to start\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Seeked to start\n\r");
+  }
+
+  Res = f_read(&fil, (void *)header, sizeof(unsigned int) * 4, &NumBytesRead);
+  if (Res) {
+    xil_printf("Cant read header from file\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Read header from file\n\r");
+  }
+
+  Res = f_read(&fil, (void *)images,
+               sizeof(unsigned char) * NUM_TESTS * 28 * 28, &NumBytesRead);
+  if (Res) {
+    xil_printf("Cant read images from file\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Read images from file\n\r");
+  }
+
+  Res = f_close(&fil);
+  if (Res) {
+    xil_printf("Failed to close images file\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Closed images file\n\r");
+  }
+
+  xil_printf("Returning...\n\r");
+
+  return XST_SUCCESS;
+}
+
+// Parse MNIST test image labels
+int parse_mnist_labels(char *filename, unsigned char *labels) {
+  FRESULT Res;
+  UINT NumBytesRead;
+  SD_File = (char *)filename;
+  unsigned int header[2];
+
+  Res = f_open(&fil, SD_File, FA_READ);
+  if (Res) {
+    xil_printf("ERROR when opening mnist label data file!\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Opened mnist labels data file\n\r");
+  }
+
+  Res = f_lseek(&fil, 0);
+  if (Res) {
+    xil_printf("Cant seek to start\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Seeked to start\n\r");
+  }
+
+  Res = f_read(&fil, (void *)header, sizeof(unsigned int) * 2, &NumBytesRead);
+  if (Res) {
+    xil_printf("Cant read header from file\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Read header from file\n\r");
+  }
+
+  Res = f_read(&fil, (void *)labels, sizeof(unsigned char) * NUM_TESTS,
+               &NumBytesRead);
+  if (Res) {
+    xil_printf("Cant read labels from file\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Read labels from file\n\r");
+  }
+
+  Res = f_close(&fil);
+  if (Res) {
+    xil_printf("Failed to close labels file\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Closed labels file\n\r");
+  }
+
+  return 0;
+}
+
+// Fetch a single image to be processed.
+//
+void get_image(unsigned char *images, unsigned int idx,
+               float image[1][32][32]) {
+  for (int i = 0; i < 32; i++)
+    for (int j = 0; j < 32; j++) {
+      if (i < 2 || i > 29 || j < 2 || j > 29)
+        image[0][i][j] = -1.0;
+      else
+        image[0][i][j] =
+            images[idx * 28 * 28 + (i - 2) * 28 + j - 2] / 255.0 * 2.0 - 1.0;
+    }
+}
+
+int main(int argc, char **argv) {
+
+  int status;
+  // Vector multiplier objects from xvector_multiplier.h
+  XMy_prj_accelerator accelerator;
+  XMy_prj_accelerator_Config *accelerator_config;
+
+  // Get config data struct for lenet
+  accelerator_config = XMy_prj_accelerator_LookupConfig(XPAR_XMY_PRJ_ACCELERATOR_0_DEVICE_ID);
+  if (!accelerator_config) {
+    xil_printf("No acc config found!\n\r");
+    return 1;
+  } else {
+    xil_printf("Got acc config\n\r");
+  }
+
+  // Using config object to initialize the accelerator object
+  status = XMy_prj_accelerator_CfgInitialize(&accelerator, accelerator_config);
+  if (status != XST_SUCCESS) {
+    xil_printf("Initialization of acc failed\n\r");
+  } else {
+    xil_printf("Initialization of acc successful\n\r");
+  }
+
+  // Initialize timer object
+  status = XTmrCtr_Initialize(&timer, TMRCTR_DEVICE_ID);
+  if (status != XST_SUCCESS) {
+    xil_printf("Timer init fail\n\r");
+    return XST_FAILURE;
+  }
+
+  status = XTmrCtr_SelfTest(&timer, 0);
+  if (status != XST_SUCCESS) {
+    xil_printf("Timer self test fail\n\r");
+    return XST_FAILURE;
+  }
+
+  // Start
+  xil_printf("Mounting SD\n\r");
+  FRESULT Res;
+  TCHAR *Path = "0:/";
+  Res = f_mount(&fatfs, Path, 0);
+  if (Res != FR_OK) {
+    xil_printf("Failed to open filesystem\n\r");
+    return XST_FAILURE;
+  } else {
+    xil_printf("Mounted card\n\r");
+  }
+
+  // cout<<"Creating test data matrices\n\r";
+  // cout<<"Creating layer matrices\n\r";
+
+  xil_printf("Parsing MNIST images\n\r");
+  parse_mnist_images("images.bin", images);
+  // xil_printf("Back from image load\n\r");
+
+  xil_printf("Parsing MNIST labels\n\r");
+  parse_mnist_labels("labels.bin", labels);
+
+  //  parse_parameters("params.bin");
+  //  printf("weights: %3.8f\n\r", fc6_weights[4][100][0][0]);
+
+  xil_printf("Starting inference\n\r");
+  int num_correct = 0;
+
+  xil_printf("\n\rTest Image: \n\r");
+
+  // Reset the timer
+  XTmrCtr_Reset(&timer, 0);
+  XTmrCtr_ClearStats(&timer);
+  XTmrCtr_Start(&timer, 0);
+  // Start the timer
+  timerCount_Start = XTmrCtr_GetValue(&timer, 0);
+
+  int completed_images = 0;
+  int curr_image = 0;
+
+//  Xil_DCacheDisable();
+
+  xil_printf("Loading images... \n\r");
+  for (int n = 0; n < NUM_TESTS; n++) {
+	  for (int i = 0; i < 32; i++)
+	    for (int j = 0; j < 32; j++) {
+	      if (i < 2 || i > 29 || j < 2 || j > 29)
+	        images_padded[n][i][j] = -1.0;
+	      else
+	    	  images_padded[n][i][j] =
+	            images[n * 28 * 28 + (i - 2) * 28 + j - 2] / 255.0 * 2.0 - 1.0;
+	    }
+  }
+  xil_printf("Finish loading images :P \n\r");
+
+  get_image(images, curr_image, image);
+  float input[12] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12};
+  float output[2] = {1, 0};
+  Xil_DCacheFlush();
+  XMy_prj_accelerator_Set_x(&accelerator, (u32)input);
+  XMy_prj_accelerator_Set_score(&accelerator, (u32)output);
+  XTmrCtr_Reset(&timer, 0);
+  XTmrCtr_ClearStats(&timer);
+  XTmrCtr_Start(&timer, 0);
+  // Start the timer
+  timerCount_Start = XTmrCtr_GetValue(&timer, 0);
+  XMy_prj_accelerator_Start(&accelerator);
+  while (!XMy_prj_accelerator_IsDone(&accelerator)) {
+    ;
+  }
+  timerCount_Stop = XTmrCtr_GetValue(&timer, 0);
+  // Display time
+  xil_printf("Time Accelerator for 1 image: %d\n\r", (timerCount_Stop - timerCount_Start));
+
+  xil_printf("\n\rnum correct = %d\n\r", (num_correct));
+  printf("val1: %f\n\r", output[0]);
+  printf("val2: %f\n\r", output[1]);
+
+  return 0;
+}

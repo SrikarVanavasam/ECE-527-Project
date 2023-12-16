@@ -1,0 +1,7 @@
+#include "my_prj.h"
+
+int main()
+{
+	float input[12] = {192168131, 60641, 19216811, 53, 17, 5, 108, 108, 2, 2, 0, 4};
+	  float output[2] = {0, 0};
+}

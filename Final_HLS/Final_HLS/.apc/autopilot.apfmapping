@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<autopilotfilemapping:AutoPilotFileMapping xmlns:autopilotfilemapping="www.autoesl.com/autopilotfilemapping">
+  <source>
+    <originFiles name="parameters.h" path="C:\Users\Srikar\Desktop\ECE527\my-conifer-prj\firmware\parameters.h"/>
+    <originFiles name="my_prj.h" path="C:\Users\Srikar\Desktop\ECE527\my-conifer-prj\firmware\my_prj.h"/>
+    <originFiles name="my_prj.cpp" path="C:\Users\Srikar\Desktop\ECE527\my-conifer-prj\firmware\my_prj.cpp"/>
+    <originFiles name="BDT.h" path="C:\Users\Srikar\Desktop\ECE527\my-conifer-prj\firmware\BDT.h"/>
+    <originFiles name="BDT.cpp" path="C:\Users\Srikar\Desktop\ECE527\my-conifer-prj\firmware\BDT.cpp"/>
+  </source>
+  <testbench/>
+</autopilotfilemapping:AutoPilotFileMapping>

@@ -1,0 +1,10 @@
+#include "my_prj.h"
+#include "stdio.h"
+
+int main()
+{
+	float input[12] = {192168131.0, 60641.0, 19216811.0, 53.0, 17.0, 5.0, 108.0, 108.0, 2.0, 2.0, 0.0, 4.0};
+	float output[2] = {0.0, 0.0};
+	my_prj(input, output);
+	printf("output: %f\n", output[0]);
+}

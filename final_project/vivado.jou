@@ -1,0 +1,56 @@
+#-----------------------------------------------------------
+# Vivado v2019.1 (64-bit)
+# SW Build 2552052 on Fri May 24 14:49:42 MDT 2019
+# IP Build 2548770 on Fri May 24 18:01:18 MDT 2019
+# Start of session at: Fri Nov 10 12:49:07 2023
+# Process ID: 12608
+# Current directory: C:/Users/huang/AppData/Roaming/Xilinx/Vivado
+# Command line: vivado.exe -gui_launcher_event rodinguilauncherevent13780
+# Log file: C:/Users/huang/AppData/Roaming/Xilinx/Vivado/vivado.log
+# Journal file: C:/Users/huang/AppData/Roaming/Xilinx/Vivado\vivado.jou
+#-----------------------------------------------------------
+start_gui
+open_project C:/Users/huang/ECE527/MP5/MP5.xpr
+update_compile_order -fileset sources_1
+write_hwdef -force  -file C:/Users/huang/ECE527/MP5/MP5.sdk/design_1_wrapper.hdf
+file copy -force C:/Users/huang/ECE527/MP5/MP5.runs/impl_1/design_1_wrapper.sysdef C:/Users/huang/ECE527/MP5/MP5.sdk/design_1_wrapper.hdf
+
+launch_sdk -workspace C:/Users/huang/ECE527/MP5/MP5.sdk -hwspec C:/Users/huang/ECE527/MP5/MP5.sdk/design_1_wrapper.hdf
+open_bd_design {C:/Users/huang/ECE527/MP5/MP5.srcs/sources_1/bd/design_1/design_1.bd}
+startgroup
+set_property -dict [list CONFIG.mode_64bit {0}] [get_bd_cells axi_timer_0]
+endgroup
+save_bd_design
+reset_run synth_1
+reset_run design_1_axi_timer_0_0_synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 10
+wait_on_run impl_1
+open_run impl_1
+file copy -force C:/Users/huang/ECE527/MP5/MP5.runs/impl_1/design_1_wrapper.sysdef C:/Users/huang/ECE527/MP5/MP5.sdk/design_1_wrapper.hdf
+
+file copy -force C:/Users/huang/ECE527/MP5/MP5.runs/impl_1/design_1_wrapper.sysdef C:/Users/huang/ECE527/MP5/MP5.sdk/design_1_wrapper.hdf
+
+launch_sdk -workspace C:/Users/huang/ECE527/MP5/MP5.sdk -hwspec C:/Users/huang/ECE527/MP5/MP5.sdk/design_1_wrapper.hdf
+open_bd_design {C:/Users/huang/ECE527/MP5/MP5.srcs/sources_1/bd/design_1/design_1.bd}
+update_ip_catalog -rebuild
+report_ip_status -name ip_status 
+upgrade_ip -vlnv xilinx.com:hls:LeNet:1.0 [get_ips  design_1_LeNet_0_0] -log ip_upgrade.log
+export_ip_user_files -of_objects [get_ips design_1_LeNet_0_0] -no_script -sync -force -quiet
+generate_target all [get_files  C:/Users/huang/ECE527/MP5/MP5.srcs/sources_1/bd/design_1/design_1.bd]
+catch { config_ip_cache -export [get_ips -all design_1_LeNet_0_0] }
+catch { config_ip_cache -export [get_ips -all design_1_auto_pc_0] }
+export_ip_user_files -of_objects [get_files C:/Users/huang/ECE527/MP5/MP5.srcs/sources_1/bd/design_1/design_1.bd] -no_script -sync -force -quiet
+create_ip_run [get_files -of_objects [get_fileset sources_1] C:/Users/huang/ECE527/MP5/MP5.srcs/sources_1/bd/design_1/design_1.bd]
+launch_runs -jobs 10 design_1_LeNet_0_0_synth_1
+export_simulation -of_objects [get_files C:/Users/huang/ECE527/MP5/MP5.srcs/sources_1/bd/design_1/design_1.bd] -directory C:/Users/huang/ECE527/MP5/MP5.ip_user_files/sim_scripts -ip_user_files_dir C:/Users/huang/ECE527/MP5/MP5.ip_user_files -ipstatic_source_dir C:/Users/huang/ECE527/MP5/MP5.ip_user_files/ipstatic -lib_map_path [list {modelsim=C:/Users/huang/ECE527/MP5/MP5.cache/compile_simlib/modelsim} {questa=C:/Users/huang/ECE527/MP5/MP5.cache/compile_simlib/questa} {riviera=C:/Users/huang/ECE527/MP5/MP5.cache/compile_simlib/riviera} {activehdl=C:/Users/huang/ECE527/MP5/MP5.cache/compile_simlib/activehdl}] -use_ip_compiled_libs -force -quiet
+report_ip_status -name ip_status 
+reset_run synth_1
+launch_runs impl_1 -to_step write_bitstream -jobs 10
+wait_on_run impl_1
+file copy -force C:/Users/huang/ECE527/MP5/MP5.runs/impl_1/design_1_wrapper.sysdef C:/Users/huang/ECE527/MP5/MP5.sdk/design_1_wrapper.hdf
+
+file copy -force C:/Users/huang/ECE527/MP5/MP5.runs/impl_1/design_1_wrapper.sysdef C:/Users/huang/ECE527/MP5/MP5.sdk/design_1_wrapper.hdf
+
+launch_sdk -workspace C:/Users/huang/ECE527/MP5/MP5.sdk -hwspec C:/Users/huang/ECE527/MP5/MP5.sdk/design_1_wrapper.hdf
+launch_sdk -workspace C:/Users/huang/ECE527/MP5/MP5.sdk -hwspec C:/Users/huang/ECE527/MP5/MP5.sdk/design_1_wrapper.hdf
+archive_project C:/Users/huang/ECE527/MP5.xpr.zip -temp_dir C:/Users/huang/AppData/Roaming/Xilinx/Vivado/.Xil/Vivado-12608-yh_dell -force -include_local_ip_cache

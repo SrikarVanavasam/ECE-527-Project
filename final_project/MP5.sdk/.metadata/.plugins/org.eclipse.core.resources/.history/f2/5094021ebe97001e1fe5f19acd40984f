@@ -1,0 +1,117 @@
+// ECE527 Fall 2017
+// University of Illinois, Urbana-Champaign
+// Author - Sitao Huang, Ashutosh Dhar
+// Revised Fall 2020 by Mang Yu
+// Demo code of LeNet Convolutional Neural Network
+// *****************************************
+// Before running the code make that the following files are on the SD card
+// 1. images.bin
+// 2. labels.bin
+// 3. params.bin
+// This code demos inference on the MNIST dataset with a LeNet CNN
+// Provided network parameters have been training already and should give an
+// accuracy of ~98.39%
+
+#include "ff.h" /* FAT File System */
+#include "stdio.h"
+#include "xil_cache.h"
+#include "xil_printf.h"
+#include "xmy_prj_accelerator.h"
+#include "xparameters.h" /* SDK generated parameters */
+#include "xplatform_info.h"
+#include "xsdps.h" /* SD device driver */
+#include "xtmrctr.h"
+#include "data.h"
+
+// Timer variables to measure time
+u32 timerCount_Stop;
+u32 timerCount_Start;
+
+// AXI device object for AXI Timer
+XTmrCtr timer;
+#define TMRCTR_DEVICE_ID XPAR_AXI_TIMER_0_DEVICE_ID
+
+
+//float input[12] = {192168131.0, 60641.0, 19216811.0, 53.0, 17.0, 5.0, 108.0, 108.0, 2.0, 2.0, 0.0, 4.0};
+float input[12] = {1921681195.0, 63318.0, 52139250253.0, 443.0, 6.0, 91.0, 181.0, 165.0, 2.0, 1.0, 24.0, 327.0};
+float output[2] = {0, 0};
+
+int main(int argc, char **argv) {
+
+  int status;
+  // Vector multiplier objects from xvector_multiplier.h
+  XMy_prj_accelerator accelerator;
+  XMy_prj_accelerator_Config *accelerator_config;
+
+  // Get config data struct for lenet
+  accelerator_config = XMy_prj_accelerator_LookupConfig(XPAR_XMY_PRJ_ACCELERATOR_0_DEVICE_ID);
+  if (!accelerator_config) {
+    xil_printf("No acc config found!\n\r");
+    return 1;
+  } else {
+    xil_printf("Got acc config\n\r");
+  }
+
+  // Using config object to initialize the accelerator object
+  status = XMy_prj_accelerator_CfgInitialize(&accelerator, accelerator_config);
+  if (status != XST_SUCCESS) {
+    xil_printf("Initialization of acc failed\n\r");
+  } else {
+    xil_printf("Initialization of acc successful\n\r");
+  }
+
+  // Initialize timer object
+  status = XTmrCtr_Initialize(&timer, TMRCTR_DEVICE_ID);
+  if (status != XST_SUCCESS) {
+    xil_printf("Timer init fail\n\r");
+    return XST_FAILURE;
+  }
+
+  status = XTmrCtr_SelfTest(&timer, 0);
+  if (status != XST_SUCCESS) {
+    xil_printf("Timer self test fail\n\r");
+    return XST_FAILURE;
+  }
+
+  // Start
+  printf("start\n");
+
+  // Reset the timer
+  XTmrCtr_Reset(&timer, 0);
+  XTmrCtr_ClearStats(&timer);
+  XTmrCtr_Start(&timer, 0);
+  // Start the timer
+  timerCount_Start = XTmrCtr_GetValue(&timer, 0);
+
+  int completed_images = 0;
+  int curr_image = 0;
+
+//  Xil_DCacheDisable();
+
+  while (!XMy_prj_accelerator_IsReady(&accelerator)) {
+	  ;
+  }
+  Xil_DCacheFlush();
+  for (int i = 0; i < NUM_SAMPLES; i++)
+  	{
+	  XMy_prj_accelerator_Set_x(&accelerator, (u32)inputs[i]);
+	  XMy_prj_accelerator_Set_score(&accelerator, (u32)output);
+	  XTmrCtr_Reset(&timer, 0);
+	  XTmrCtr_ClearStats(&timer);
+	  XTmrCtr_Start(&timer, 0);
+	  // Start the timer
+	  timerCount_Start = XTmrCtr_GetValue(&timer, 0);
+	  XMy_prj_accelerator_Start(&accelerator);
+	  while (!XMy_prj_accelerator_IsDone(&accelerator)) {
+		;
+	  }
+  	}
+  timerCount_Stop = XTmrCtr_GetValue(&timer, 0);
+  // Display time
+  xil_printf("Time Accelerator for 1 image: %d\n\r", (timerCount_Stop - timerCount_Start));
+
+  printf("val1: %f\n\r", output[0]);
+  printf("val2: %f\n\r", output[1]);
+
+  return 0;
+}

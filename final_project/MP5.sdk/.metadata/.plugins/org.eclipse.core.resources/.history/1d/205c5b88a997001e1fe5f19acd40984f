@@ -1,0 +1,40 @@
+#include "my_prj.h"
+#include "stdio.h"
+#include "xil_cache.h"
+#include "xil_printf.h"
+#include "xmy_prj_accelerator.h"
+#include "xparameters.h" /* SDK generated parameters */
+#include "xplatform_info.h"
+#include "xsdps.h" /* SD device driver */
+#include "xtmrctr.h"
+#include "ff.h" /* FAT File System */
+
+
+// Timer variables to measure time
+u32 timerCount_Stop;
+u32 timerCount_Start;
+
+// AXI device object for AXI Timer
+XTmrCtr timer;
+#define TMRCTR_DEVICE_ID XPAR_AXI_TIMER_0_DEVICE_ID
+
+// Max number of test cases in LeNet is 10K
+// You can reduce this for testing/debugging
+// Final report must use all 10000 test cases
+#define NUM_TESTS 10000
+
+// SD card and file reading objects
+static FIL fil; /* File object */
+static FATFS fatfs;
+static char *SD_File;
+u32 Platform;
+
+//float input[12] = {192168131.0, 60641.0, 19216811.0, 53.0, 17.0, 5.0, 108.0, 108.0, 2.0, 2.0, 0.0, 4.0};
+float input[12] = {1921681195.0, 63318.0, 52139250253.0, 443.0, 6.0, 91.0, 181.0, 165.0, 2.0, 1.0, 24.0, 327.0};
+float output[2] = {0, 0};
+
+int main()
+{
+	my_prj(input, output);
+	printf("output: %f\n", output[0]);
+}

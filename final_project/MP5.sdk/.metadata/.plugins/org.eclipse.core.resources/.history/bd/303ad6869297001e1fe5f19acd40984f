@@ -1,0 +1,6 @@
+#include "my_prj.h"
+
+int main()
+{
+	return 0;
+}

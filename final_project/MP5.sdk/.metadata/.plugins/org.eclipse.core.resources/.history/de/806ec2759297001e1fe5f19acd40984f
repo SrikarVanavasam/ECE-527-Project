@@ -1,0 +1,6 @@
+#include "my_prj.cpp"
+
+int main()
+{
+	return 0;
+}

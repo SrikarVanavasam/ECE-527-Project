@@ -1,0 +1,16 @@
+/*
+ * data.h
+ *
+ *  Created on: Dec 10, 2023
+ *      Author: Srika
+ */
+
+#ifndef SRC_DATA_H_
+#define SRC_DATA_H_
+
+#define NUM_SAMPLES 500
+
+float data[NUM_SAMPLES]
+
+
+#endif /* SRC_DATA_H_ */

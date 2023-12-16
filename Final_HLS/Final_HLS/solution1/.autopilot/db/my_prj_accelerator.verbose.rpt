@@ -1,0 +1,856 @@
+
+
+================================================================
+== Vivado HLS Report for 'my_prj_accelerator'
+================================================================
+* Date:           Mon Dec 11 23:07:53 2023
+
+* Version:        2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)
+* Project:        Final_HLS
+* Solution:       solution1
+* Product family: zynq
+* Target device:  xc7z020-clg400-1
+
+
+================================================================
+== Performance Estimates
+================================================================
++ Timing (ns): 
+    * Summary: 
+    +--------+-------+----------+------------+
+    |  Clock | Target| Estimated| Uncertainty|
+    +--------+-------+----------+------------+
+    |ap_clk  |  10.00|     8.750|        1.25|
+    +--------+-------+----------+------------+
+
++ Latency (clock cycles): 
+    * Summary: 
+    +-----+-----+-----+-----+---------+
+    |  Latency  |  Interval | Pipeline|
+    | min | max | min | max |   Type  |
+    +-----+-----+-----+-----+---------+
+    |  548|  548|  548|  548|   none  |
+    +-----+-----+-----+-----+---------+
+
+    + Detail: 
+        * Instance: 
+        +--------------------------------+----------------------+-----+-----+-----+-----+---------+
+        |                                |                      |  Latency  |  Interval | Pipeline|
+        |            Instance            |        Module        | min | max | min | max |   Type  |
+        +--------------------------------+----------------------+-----+-----+-----+-----+---------+
+        |grp_decision_function_90_fu_74  |decision_function_90  |  491|  491|  491|  491|   none  |
+        |grp_copy_output_fu_79           |copy_output           |    9|    9|    9|    9|   none  |
+        |grp_copy_input_fu_88            |copy_input            |   43|   43|   43|   43|   none  |
+        +--------------------------------+----------------------+-----+-----+-----+-----+---------+
+
+        * Loop: 
+        N/A
+
+
+
+================================================================
+== Utilization Estimates
+================================================================
+* Summary: 
++-----------------+---------+-------+--------+-------+-----+
+|       Name      | BRAM_18K| DSP48E|   FF   |  LUT  | URAM|
++-----------------+---------+-------+--------+-------+-----+
+|DSP              |        -|      -|       -|      -|    -|
+|Expression       |        -|      -|       -|      -|    -|
+|FIFO             |        -|      -|       -|      -|    -|
+|Instance         |        4|      -|    5802|  66749|    -|
+|Memory           |        0|      -|      24|      3|    0|
+|Multiplexer      |        -|      -|       -|    131|    -|
+|Register         |        -|      -|      79|      -|    -|
++-----------------+---------+-------+--------+-------+-----+
+|Total            |        4|      0|    5905|  66883|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Available        |      280|    220|  106400|  53200|    0|
++-----------------+---------+-------+--------+-------+-----+
+|Utilization (%)  |        1|      0|       5|    125|    0|
++-----------------+---------+-------+--------+-------+-----+
+
++ Detail: 
+    * Instance: 
+    +------------------------------------+----------------------------------+---------+-------+------+-------+-----+
+    |              Instance              |              Module              | BRAM_18K| DSP48E|  FF  |  LUT  | URAM|
+    +------------------------------------+----------------------------------+---------+-------+------+-------+-----+
+    |grp_copy_input_fu_88                |copy_input                        |        0|      0|   177|    612|    0|
+    |grp_copy_output_fu_79               |copy_output                       |        0|      0|   269|    941|    0|
+    |grp_decision_function_90_fu_74      |decision_function_90              |        0|      0|  4678|  64262|    0|
+    |my_prj_accelerator_control_s_axi_U  |my_prj_accelerator_control_s_axi  |        0|      0|   112|    168|    0|
+    |my_prj_accelerator_gmem_m_axi_U     |my_prj_accelerator_gmem_m_axi     |        4|      0|   566|    766|    0|
+    +------------------------------------+----------------------------------+---------+-------+------+-------+-----+
+    |Total                               |                                  |        4|      0|  5802|  66749|    0|
+    +------------------------------------+----------------------------------+---------+-------+------+-------+-----+
+
+    * DSP48E: 
+    N/A
+
+    * Memory: 
+    +-----------+----------------------+---------+----+----+-----+------+-----+------+-------------+
+    |   Memory  |        Module        | BRAM_18K| FF | LUT| URAM| Words| Bits| Banks| W*Bits*Banks|
+    +-----------+----------------------+---------+----+----+-----+------+-----+------+-------------+
+    |x_int_V_U  |my_prj_acceleratofYi  |        0|  24|   3|    0|    12|   12|     1|          144|
+    +-----------+----------------------+---------+----+----+-----+------+-----+------+-------------+
+    |Total      |                      |        0|  24|   3|    0|    12|   12|     1|          144|
+    +-----------+----------------------+---------+----+----+-----+------+-----+------+-------------+
+
+    * FIFO: 
+    N/A
+
+    * Expression: 
+    N/A
+
+    * Multiplexer: 
+    +------------------+----+-----------+-----+-----------+
+    |       Name       | LUT| Input Size| Bits| Total Bits|
+    +------------------+----+-----------+-----+-----------+
+    |ap_NS_fsm         |  38|          7|    1|          7|
+    |gmem_ARVALID      |   9|          2|    1|          2|
+    |gmem_AWVALID      |   9|          2|    1|          2|
+    |gmem_BREADY       |   9|          2|    1|          2|
+    |gmem_RREADY       |   9|          2|    1|          2|
+    |gmem_WVALID       |   9|          2|    1|          2|
+    |x_int_V_address0  |  15|          3|    4|         12|
+    |x_int_V_ce0       |  15|          3|    1|          3|
+    |x_int_V_ce1       |   9|          2|    1|          2|
+    |x_int_V_we0       |   9|          2|    1|          2|
+    +------------------+----+-----------+-----+-----------+
+    |Total             | 131|         27|   13|         36|
+    +------------------+----+-----------+-----+-----------+
+
+    * Register: 
+    +---------------------------------------------+----+----+-----+-----------+
+    |                     Name                    | FF | LUT| Bits| Const Bits|
+    +---------------------------------------------+----+----+-----+-----------+
+    |ap_CS_fsm                                    |   6|   0|    6|          0|
+    |grp_copy_input_fu_88_ap_start_reg            |   1|   0|    1|          0|
+    |grp_copy_output_fu_79_ap_start_reg           |   1|   0|    1|          0|
+    |grp_decision_function_90_fu_74_ap_start_reg  |   1|   0|    1|          0|
+    |score3_reg_116                               |  29|   0|   29|          0|
+    |score_int_0_V_reg_126                        |  12|   0|   12|          0|
+    |x1_reg_121                                   |  29|   0|   29|          0|
+    +---------------------------------------------+----+----+-----+-----------+
+    |Total                                        |  79|   0|   79|          0|
+    +---------------------------------------------+----+----+-----+-----------+
+
+
+
+================================================================
+== Interface
+================================================================
+* Summary: 
++-----------------------+-----+-----+------------+--------------------+--------------+
+|       RTL Ports       | Dir | Bits|  Protocol  |    Source Object   |    C Type    |
++-----------------------+-----+-----+------------+--------------------+--------------+
+|s_axi_control_AWVALID  |  in |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_AWREADY  | out |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_AWADDR   |  in |    5|    s_axi   |       control      |    scalar    |
+|s_axi_control_WVALID   |  in |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_WREADY   | out |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_WDATA    |  in |   32|    s_axi   |       control      |    scalar    |
+|s_axi_control_WSTRB    |  in |    4|    s_axi   |       control      |    scalar    |
+|s_axi_control_ARVALID  |  in |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_ARREADY  | out |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_ARADDR   |  in |    5|    s_axi   |       control      |    scalar    |
+|s_axi_control_RVALID   | out |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_RREADY   |  in |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_RDATA    | out |   32|    s_axi   |       control      |    scalar    |
+|s_axi_control_RRESP    | out |    2|    s_axi   |       control      |    scalar    |
+|s_axi_control_BVALID   | out |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_BREADY   |  in |    1|    s_axi   |       control      |    scalar    |
+|s_axi_control_BRESP    | out |    2|    s_axi   |       control      |    scalar    |
+|ap_clk                 |  in |    1| ap_ctrl_hs | my_prj_accelerator | return value |
+|ap_rst_n               |  in |    1| ap_ctrl_hs | my_prj_accelerator | return value |
+|interrupt              | out |    1| ap_ctrl_hs | my_prj_accelerator | return value |
+|m_axi_gmem_AWVALID     | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWREADY     |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWADDR      | out |   32|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWID        | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWLEN       | out |    8|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWSIZE      | out |    3|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWBURST     | out |    2|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWLOCK      | out |    2|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWCACHE     | out |    4|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWPROT      | out |    3|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWQOS       | out |    4|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWREGION    | out |    4|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_AWUSER      | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_WVALID      | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_WREADY      |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_WDATA       | out |   64|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_WSTRB       | out |    8|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_WLAST       | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_WID         | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_WUSER       | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARVALID     | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARREADY     |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARADDR      | out |   32|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARID        | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARLEN       | out |    8|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARSIZE      | out |    3|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARBURST     | out |    2|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARLOCK      | out |    2|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARCACHE     | out |    4|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARPROT      | out |    3|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARQOS       | out |    4|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARREGION    | out |    4|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_ARUSER      | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_RVALID      |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_RREADY      | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_RDATA       |  in |   64|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_RLAST       |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_RID         |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_RUSER       |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_RRESP       |  in |    2|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_BVALID      |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_BREADY      | out |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_BRESP       |  in |    2|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_BID         |  in |    1|    m_axi   |        gmem        |    pointer   |
+|m_axi_gmem_BUSER       |  in |    1|    m_axi   |        gmem        |    pointer   |
++-----------------------+-----+-----+------------+--------------------+--------------+
+
+============================================================
++ Verbose Summary: Synthesis Manager
+============================================================
+InlineROM: 1
+ExposeGlobal: 0
+============================================================
++ Verbose Summary: CDFG Model
+============================================================
+IsTopModel: 1
+ResetActiveHigh: 1
+IsCombinational: 2
+IsDatapathOnly: 2
+HasWiredReturn: 1
+HasMFsm: 0
+HasVarLatency: 1
+IsPipeline: 0
+IsRtlPipelined: 0
+IsInstanceOverlapped: 0
+IsDontTouch: 0
+HasImplIP: 0
+IsGatedGlobalClock: 0
+
+
+============================================================
++ Verbose Summary: Schedule
+============================================================
+* Number of FSM states : 6
+* Pipeline : 0
+* Dataflow Pipeline: 0
+
+* FSM state transitions: 
+1 --> 2 
+2 --> 3 
+3 --> 4 
+4 --> 5 
+5 --> 6 
+6 --> 
+
+* FSM state operations: 
+
+State 1 <SV = 0> <Delay = 2.32>
+ST_1 : Operation 7 [1/1] (1.00ns)   --->   "%score_read = call i32 @_ssdm_op_Read.s_axilite.i32(i32 %score)"   --->   Operation 7 'read' 'score_read' <Predicate = true> <Delay = 1.00> <Core = "s_axilite">   --->   Core 10 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_1 : Operation 8 [1/1] (1.00ns)   --->   "%x_read = call i32 @_ssdm_op_Read.s_axilite.i32(i32 %x)"   --->   Operation 8 'read' 'x_read' <Predicate = true> <Delay = 1.00> <Core = "s_axilite">   --->   Core 10 's_axilite' <Latency = 0> <II = 1> <Delay = 1.00> <Adapter> <Opcode : 'read' 'write'>
+ST_1 : Operation 9 [1/1] (0.00ns)   --->   "%score3 = call i29 @_ssdm_op_PartSelect.i29.i32.i32.i32(i32 %score_read, i32 3, i32 31)"   --->   Operation 9 'partselect' 'score3' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 10 [1/1] (0.00ns)   --->   "%x1 = call i29 @_ssdm_op_PartSelect.i29.i32.i32.i32(i32 %x_read, i32 3, i32 31)"   --->   Operation 10 'partselect' 'x1' <Predicate = true> <Delay = 0.00>
+ST_1 : Operation 11 [1/1] (2.32ns)   --->   "%x_int_V = alloca [12 x i12], align 2" [../my-conifer-prj/firmware/my_prj.cpp:33]   --->   Operation 11 'alloca' 'x_int_V' <Predicate = true> <Delay = 2.32>
+
+State 2 <SV = 1> <Delay = 8.75>
+ST_2 : Operation 12 [2/2] (8.75ns)   --->   "call fastcc void @copy_input(double* %gmem, i29 %x1, [12 x i12]* nocapture %x_int_V)" [../my-conifer-prj/firmware/my_prj.cpp:35]   --->   Operation 12 'call' <Predicate = true> <Delay = 8.75> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 3 <SV = 2> <Delay = 0.00>
+ST_3 : Operation 13 [1/2] (0.00ns)   --->   "call fastcc void @copy_input(double* %gmem, i29 %x1, [12 x i12]* nocapture %x_int_V)" [../my-conifer-prj/firmware/my_prj.cpp:35]   --->   Operation 13 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 4 <SV = 3> <Delay = 0.00>
+ST_4 : Operation 14 [2/2] (0.00ns)   --->   "%score_int_0_V = call fastcc i12 @decision_function.90([12 x i12]* %x_int_V) nounwind" [../my-conifer-prj/firmware/my_prj.cpp:36]   --->   Operation 14 'call' 'score_int_0_V' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 5 <SV = 4> <Delay = 8.75>
+ST_5 : Operation 15 [1/2] (0.00ns)   --->   "%score_int_0_V = call fastcc i12 @decision_function.90([12 x i12]* %x_int_V) nounwind" [../my-conifer-prj/firmware/my_prj.cpp:36]   --->   Operation 15 'call' 'score_int_0_V' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_5 : Operation 16 [2/2] (8.75ns)   --->   "call fastcc void @copy_output(i12 %score_int_0_V, double* %gmem, i29 %score3)" [../my-conifer-prj/firmware/my_prj.cpp:37]   --->   Operation 16 'call' <Predicate = true> <Delay = 8.75> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+
+State 6 <SV = 5> <Delay = 0.00>
+ST_6 : Operation 17 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecBitsMap(double* %gmem), !map !103"   --->   Operation 17 'specbitsmap' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 18 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecTopModule([19 x i8]* @my_prj_accelerator_s) nounwind"   --->   Operation 18 'spectopmodule' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 19 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(double* %gmem, [6 x i8]* @p_str9296, i32 0, i32 0, [1 x i8]* @p_str9195, i32 0, i32 12, [5 x i8]* @p_str9397, [6 x i8]* @p_str9498, [1 x i8]* @p_str9195, i32 16, i32 16, i32 16, i32 16, [1 x i8]* @p_str9195, [1 x i8]* @p_str9195) nounwind" [../my-conifer-prj/firmware/my_prj.cpp:26]   --->   Operation 19 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 20 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 %x, [10 x i8]* @mode, i32 0, i32 0, [1 x i8]* @p_str9195, i32 0, i32 12, [1 x i8]* @bundle, [6 x i8]* @p_str9498, [1 x i8]* @p_str9195, i32 16, i32 16, i32 16, i32 16, [1 x i8]* @p_str9195, [1 x i8]* @p_str9195) nounwind" [../my-conifer-prj/firmware/my_prj.cpp:26]   --->   Operation 20 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 21 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 %score, [10 x i8]* @mode1, i32 0, i32 0, [1 x i8]* @p_str9195, i32 0, i32 2, [1 x i8]* @bundle2, [6 x i8]* @p_str9498, [1 x i8]* @p_str9195, i32 16, i32 16, i32 16, i32 16, [1 x i8]* @p_str9195, [1 x i8]* @p_str9195) nounwind" [../my-conifer-prj/firmware/my_prj.cpp:27]   --->   Operation 21 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 22 [1/1] (0.00ns)   --->   "call void (...)* @_ssdm_op_SpecInterface(i32 0, [10 x i8]* @p_str95, i32 0, i32 0, [1 x i8]* @p_str9195, i32 0, i32 0, [8 x i8]* @p_str96, [1 x i8]* @p_str9195, [1 x i8]* @p_str9195, i32 0, i32 0, i32 0, i32 0, [1 x i8]* @p_str9195, [1 x i8]* @p_str9195) nounwind" [../my-conifer-prj/firmware/my_prj.cpp:28]   --->   Operation 22 'specinterface' <Predicate = true> <Delay = 0.00>
+ST_6 : Operation 23 [1/2] (0.00ns)   --->   "call fastcc void @copy_output(i12 %score_int_0_V, double* %gmem, i29 %score3)" [../my-conifer-prj/firmware/my_prj.cpp:37]   --->   Operation 23 'call' <Predicate = true> <Delay = 0.00> <CoreType = "Generic">   --->   Core 0 '' <Latency = 0> <II = 1> <Delay = 1.00> <Generic> <Opcode : >
+ST_6 : Operation 24 [1/1] (0.00ns)   --->   "ret void" [../my-conifer-prj/firmware/my_prj.cpp:39]   --->   Operation 24 'ret' <Predicate = true> <Delay = 0.00>
+
+
+============================================================
++ Verbose Summary: Binding
+============================================================
+STG Binding: 
+---------------- STG Properties BEGIN ----------------
+- Is combinational: 0
+- Is one-state seq: 0
+- Is datapath-only: 0
+- Is pipelined: 0
+- Is top level: 1
+Port [ Return ] is wired: 1; IO mode=ap_ctrl_hs:ce=0
+Port [ gmem]:  wired=1; compound=1; hidden=0; nouse=0; global=0; static=0; extern=0; dir=2; type=4; pingpong=0; private_global=0; IO mode=m_axi:ce=0
+Port [ x]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+Port [ score]:  wired=1; compound=0; hidden=0; nouse=0; global=0; static=0; extern=0; dir=0; type=0; pingpong=0; private_global=0; IO mode=ap_none:ce=0
+---------------- STG Properties END ------------------
+
+---------------- Datapath Model BEGIN ----------------
+
+<LifeTime>
+<method=bitvector/>
+score_read         (read         ) [ 0000000]
+x_read             (read         ) [ 0000000]
+score3             (partselect   ) [ 0011111]
+x1                 (partselect   ) [ 0011000]
+x_int_V            (alloca       ) [ 0011110]
+call_ln35          (call         ) [ 0000000]
+score_int_0_V      (call         ) [ 0000001]
+specbitsmap_ln0    (specbitsmap  ) [ 0000000]
+spectopmodule_ln0  (spectopmodule) [ 0000000]
+specinterface_ln26 (specinterface) [ 0000000]
+specinterface_ln26 (specinterface) [ 0000000]
+specinterface_ln27 (specinterface) [ 0000000]
+specinterface_ln28 (specinterface) [ 0000000]
+call_ln37          (call         ) [ 0000000]
+ret_ln39           (ret          ) [ 0000000]
+</LifeTime>
+
+<model>
+
+<comp_list>
+<comp id="0" class="1000" name="gmem">
+<pin_list>
+<pin id="1" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="gmem"/></StgValue>
+</bind>
+</comp>
+
+<comp id="2" class="1000" name="x">
+<pin_list>
+<pin id="3" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="x"/></StgValue>
+</bind>
+</comp>
+
+<comp id="4" class="1000" name="score">
+<pin_list>
+<pin id="5" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="score"/></StgValue>
+</bind>
+</comp>
+
+<comp id="6" class="1001" name="const_6">
+<pin_list>
+<pin id="7" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_Read.s_axilite.i32"/></StgValue>
+</bind>
+</comp>
+
+<comp id="8" class="1001" name="const_8">
+<pin_list>
+<pin id="9" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_PartSelect.i29.i32.i32.i32"/></StgValue>
+</bind>
+</comp>
+
+<comp id="10" class="1001" name="const_10">
+<pin_list>
+<pin id="11" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="12" class="1001" name="const_12">
+<pin_list>
+<pin id="13" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="14" class="1001" name="const_14">
+<pin_list>
+<pin id="15" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="16" class="1001" name="const_16">
+<pin_list>
+<pin id="17" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="copy_input"/></StgValue>
+</bind>
+</comp>
+
+<comp id="18" class="1001" name="const_18">
+<pin_list>
+<pin id="19" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="decision_function.90"/></StgValue>
+</bind>
+</comp>
+
+<comp id="20" class="1001" name="const_20">
+<pin_list>
+<pin id="21" dir="1" index="0" bw="1" slack="0"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="copy_output"/></StgValue>
+</bind>
+</comp>
+
+<comp id="22" class="1001" name="const_22">
+<pin_list>
+<pin id="23" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecBitsMap"/></StgValue>
+</bind>
+</comp>
+
+<comp id="24" class="1001" name="const_24">
+<pin_list>
+<pin id="25" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecTopModule"/></StgValue>
+</bind>
+</comp>
+
+<comp id="26" class="1001" name="const_26">
+<pin_list>
+<pin id="27" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="my_prj_accelerator_s"/></StgValue>
+</bind>
+</comp>
+
+<comp id="28" class="1001" name="const_28">
+<pin_list>
+<pin id="29" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="_ssdm_op_SpecInterface"/></StgValue>
+</bind>
+</comp>
+
+<comp id="30" class="1001" name="const_30">
+<pin_list>
+<pin id="31" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str9296"/></StgValue>
+</bind>
+</comp>
+
+<comp id="32" class="1001" name="const_32">
+<pin_list>
+<pin id="33" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="34" class="1001" name="const_34">
+<pin_list>
+<pin id="35" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str9195"/></StgValue>
+</bind>
+</comp>
+
+<comp id="36" class="1001" name="const_36">
+<pin_list>
+<pin id="37" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="38" class="1001" name="const_38">
+<pin_list>
+<pin id="39" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str9397"/></StgValue>
+</bind>
+</comp>
+
+<comp id="40" class="1001" name="const_40">
+<pin_list>
+<pin id="41" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str9498"/></StgValue>
+</bind>
+</comp>
+
+<comp id="42" class="1001" name="const_42">
+<pin_list>
+<pin id="43" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="44" class="1001" name="const_44">
+<pin_list>
+<pin id="45" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="mode"/></StgValue>
+</bind>
+</comp>
+
+<comp id="46" class="1001" name="const_46">
+<pin_list>
+<pin id="47" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="bundle"/></StgValue>
+</bind>
+</comp>
+
+<comp id="48" class="1001" name="const_48">
+<pin_list>
+<pin id="49" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="mode1"/></StgValue>
+</bind>
+</comp>
+
+<comp id="50" class="1001" name="const_50">
+<pin_list>
+<pin id="51" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name=""/></StgValue>
+</bind>
+</comp>
+
+<comp id="52" class="1001" name="const_52">
+<pin_list>
+<pin id="53" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="bundle2"/></StgValue>
+</bind>
+</comp>
+
+<comp id="54" class="1001" name="const_54">
+<pin_list>
+<pin id="55" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str95"/></StgValue>
+</bind>
+</comp>
+
+<comp id="56" class="1001" name="const_56">
+<pin_list>
+<pin id="57" dir="1" index="0" bw="1" slack="2147483647"/>
+</pin_list>
+<bind>
+<StgValue><ssdm name="p_str96"/></StgValue>
+</bind>
+</comp>
+
+<comp id="58" class="1004" name="x_int_V_alloca_fu_58">
+<pin_list>
+<pin id="59" dir="0" index="0" bw="1" slack="0"/>
+<pin id="60" dir="1" index="1" bw="12" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="alloca(26) " fcode="alloca"/>
+<opset="x_int_V/1 "/>
+</bind>
+</comp>
+
+<comp id="62" class="1004" name="score_read_read_fu_62">
+<pin_list>
+<pin id="63" dir="0" index="0" bw="32" slack="0"/>
+<pin id="64" dir="0" index="1" bw="32" slack="0"/>
+<pin id="65" dir="1" index="2" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="score_read/1 "/>
+</bind>
+</comp>
+
+<comp id="68" class="1004" name="x_read_read_fu_68">
+<pin_list>
+<pin id="69" dir="0" index="0" bw="32" slack="0"/>
+<pin id="70" dir="0" index="1" bw="32" slack="0"/>
+<pin id="71" dir="1" index="2" bw="32" slack="0"/>
+</pin_list>
+<bind>
+<opcode="read(1150) " fcode="read"/>
+<opset="x_read/1 "/>
+</bind>
+</comp>
+
+<comp id="74" class="1004" name="grp_decision_function_90_fu_74">
+<pin_list>
+<pin id="75" dir="0" index="0" bw="12" slack="0"/>
+<pin id="76" dir="0" index="1" bw="12" slack="2147483647"/>
+<pin id="77" dir="1" index="2" bw="12" slack="0"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="score_int_0_V/4 "/>
+</bind>
+</comp>
+
+<comp id="79" class="1004" name="grp_copy_output_fu_79">
+<pin_list>
+<pin id="80" dir="0" index="0" bw="0" slack="0"/>
+<pin id="81" dir="0" index="1" bw="12" slack="0"/>
+<pin id="82" dir="0" index="2" bw="64" slack="0"/>
+<pin id="83" dir="0" index="3" bw="29" slack="4"/>
+<pin id="84" dir="1" index="4" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln37/5 "/>
+</bind>
+</comp>
+
+<comp id="88" class="1004" name="grp_copy_input_fu_88">
+<pin_list>
+<pin id="89" dir="0" index="0" bw="0" slack="0"/>
+<pin id="90" dir="0" index="1" bw="64" slack="0"/>
+<pin id="91" dir="0" index="2" bw="29" slack="1"/>
+<pin id="92" dir="0" index="3" bw="12" slack="2147483647"/>
+<pin id="93" dir="1" index="4" bw="0" slack="2147483647"/>
+</pin_list>
+<bind>
+<opcode="call(48) " fcode="call"/>
+<opset="call_ln35/2 "/>
+</bind>
+</comp>
+
+<comp id="96" class="1004" name="score3_fu_96">
+<pin_list>
+<pin id="97" dir="0" index="0" bw="29" slack="0"/>
+<pin id="98" dir="0" index="1" bw="32" slack="0"/>
+<pin id="99" dir="0" index="2" bw="3" slack="0"/>
+<pin id="100" dir="0" index="3" bw="6" slack="0"/>
+<pin id="101" dir="1" index="4" bw="29" slack="4"/>
+</pin_list>
+<bind>
+<opcode="partselect(1002) " fcode="partselect"/>
+<opset="score3/1 "/>
+</bind>
+</comp>
+
+<comp id="106" class="1004" name="x1_fu_106">
+<pin_list>
+<pin id="107" dir="0" index="0" bw="29" slack="0"/>
+<pin id="108" dir="0" index="1" bw="32" slack="0"/>
+<pin id="109" dir="0" index="2" bw="3" slack="0"/>
+<pin id="110" dir="0" index="3" bw="6" slack="0"/>
+<pin id="111" dir="1" index="4" bw="29" slack="1"/>
+</pin_list>
+<bind>
+<opcode="partselect(1002) " fcode="partselect"/>
+<opset="x1/1 "/>
+</bind>
+</comp>
+
+<comp id="116" class="1005" name="score3_reg_116">
+<pin_list>
+<pin id="117" dir="0" index="0" bw="29" slack="4"/>
+<pin id="118" dir="1" index="1" bw="29" slack="4"/>
+</pin_list>
+<bind>
+<opset="score3 "/>
+</bind>
+</comp>
+
+<comp id="121" class="1005" name="x1_reg_121">
+<pin_list>
+<pin id="122" dir="0" index="0" bw="29" slack="1"/>
+<pin id="123" dir="1" index="1" bw="29" slack="1"/>
+</pin_list>
+<bind>
+<opset="x1 "/>
+</bind>
+</comp>
+
+<comp id="126" class="1005" name="score_int_0_V_reg_126">
+<pin_list>
+<pin id="127" dir="0" index="0" bw="12" slack="1"/>
+<pin id="128" dir="1" index="1" bw="12" slack="1"/>
+</pin_list>
+<bind>
+<opset="score_int_0_V "/>
+</bind>
+</comp>
+
+</comp_list>
+
+<net_list>
+<net id="61"><net_src comp="14" pin="0"/><net_sink comp="58" pin=0"/></net>
+
+<net id="66"><net_src comp="6" pin="0"/><net_sink comp="62" pin=0"/></net>
+
+<net id="67"><net_src comp="4" pin="0"/><net_sink comp="62" pin=1"/></net>
+
+<net id="72"><net_src comp="6" pin="0"/><net_sink comp="68" pin=0"/></net>
+
+<net id="73"><net_src comp="2" pin="0"/><net_sink comp="68" pin=1"/></net>
+
+<net id="78"><net_src comp="18" pin="0"/><net_sink comp="74" pin=0"/></net>
+
+<net id="85"><net_src comp="20" pin="0"/><net_sink comp="79" pin=0"/></net>
+
+<net id="86"><net_src comp="74" pin="2"/><net_sink comp="79" pin=1"/></net>
+
+<net id="87"><net_src comp="0" pin="0"/><net_sink comp="79" pin=2"/></net>
+
+<net id="94"><net_src comp="16" pin="0"/><net_sink comp="88" pin=0"/></net>
+
+<net id="95"><net_src comp="0" pin="0"/><net_sink comp="88" pin=1"/></net>
+
+<net id="102"><net_src comp="8" pin="0"/><net_sink comp="96" pin=0"/></net>
+
+<net id="103"><net_src comp="62" pin="2"/><net_sink comp="96" pin=1"/></net>
+
+<net id="104"><net_src comp="10" pin="0"/><net_sink comp="96" pin=2"/></net>
+
+<net id="105"><net_src comp="12" pin="0"/><net_sink comp="96" pin=3"/></net>
+
+<net id="112"><net_src comp="8" pin="0"/><net_sink comp="106" pin=0"/></net>
+
+<net id="113"><net_src comp="68" pin="2"/><net_sink comp="106" pin=1"/></net>
+
+<net id="114"><net_src comp="10" pin="0"/><net_sink comp="106" pin=2"/></net>
+
+<net id="115"><net_src comp="12" pin="0"/><net_sink comp="106" pin=3"/></net>
+
+<net id="119"><net_src comp="96" pin="4"/><net_sink comp="116" pin=0"/></net>
+
+<net id="120"><net_src comp="116" pin="1"/><net_sink comp="79" pin=3"/></net>
+
+<net id="124"><net_src comp="106" pin="4"/><net_sink comp="121" pin=0"/></net>
+
+<net id="125"><net_src comp="121" pin="1"/><net_sink comp="88" pin=2"/></net>
+
+<net id="129"><net_src comp="74" pin="2"/><net_sink comp="126" pin=0"/></net>
+
+<net id="130"><net_src comp="126" pin="1"/><net_sink comp="79" pin=1"/></net>
+
+</net_list>
+
+</model> 
+---------------- Datapath Model END ------------------
+
+* FSMD analyzer results:
+  - Output states:
+	Port: gmem | {5 6 }
+ - Input state : 
+	Port: my_prj_accelerator : gmem | {2 3 }
+	Port: my_prj_accelerator : x | {1 }
+	Port: my_prj_accelerator : score | {1 }
+  - Chain level:
+	State 1
+	State 2
+	State 3
+	State 4
+	State 5
+		call_ln37 : 1
+	State 6
+
+
+============================================================
++ Verbose Summary: Datapath Resource usage 
+============================================================
+
+* Functional unit list:
+|----------|--------------------------------|---------|---------|---------|
+| Operation|         Functional Unit        |  Delay  |    FF   |   LUT   |
+|----------|--------------------------------|---------|---------|---------|
+|          | grp_decision_function_90_fu_74 |  343.83 |   4514  |  57900  |
+|   call   |      grp_copy_output_fu_79     |  3.538  |   354   |   777   |
+|          |      grp_copy_input_fu_88      |  3.538  |   231   |   560   |
+|----------|--------------------------------|---------|---------|---------|
+|   read   |      score_read_read_fu_62     |    0    |    0    |    0    |
+|          |        x_read_read_fu_68       |    0    |    0    |    0    |
+|----------|--------------------------------|---------|---------|---------|
+|partselect|          score3_fu_96          |    0    |    0    |    0    |
+|          |            x1_fu_106           |    0    |    0    |    0    |
+|----------|--------------------------------|---------|---------|---------|
+|   Total  |                                | 350.906 |   5099  |  59237  |
+|----------|--------------------------------|---------|---------|---------|
+
+Memories:
++-------+--------+--------+--------+--------+
+|       |  BRAM  |   FF   |   LUT  |  URAM  |
++-------+--------+--------+--------+--------+
+|x_int_V|    0   |   24   |    3   |    0   |
++-------+--------+--------+--------+--------+
+| Total |    0   |   24   |    3   |    0   |
++-------+--------+--------+--------+--------+
+
+* Register list:
++---------------------+--------+
+|                     |   FF   |
++---------------------+--------+
+|    score3_reg_116   |   29   |
+|score_int_0_V_reg_126|   12   |
+|      x1_reg_121     |   29   |
++---------------------+--------+
+|        Total        |   70   |
++---------------------+--------+
+
+* Multiplexer (MUX) list: 
+|-----------------------|------|------|------|--------||---------||---------|
+|          Comp         |  Pin | Size |  BW  | S x BW ||  Delay  ||   LUT   |
+|-----------------------|------|------|------|--------||---------||---------|
+| grp_copy_output_fu_79 |  p1  |   2  |  12  |   24   ||    9    |
+|-----------------------|------|------|------|--------||---------||---------|
+|         Total         |      |      |      |   24   ||  1.769  ||    9    |
+|-----------------------|------|------|------|--------||---------||---------|
+
+
+
+* Summary:
++-----------+--------+--------+--------+--------+--------+
+|           |  BRAM  |  Delay |   FF   |   LUT  |  URAM  |
++-----------+--------+--------+--------+--------+--------+
+|  Function |    -   |   350  |  5099  |  59237 |    -   |
+|   Memory  |    0   |    -   |   24   |    3   |    0   |
+|Multiplexer|    -   |    1   |    -   |    9   |    -   |
+|  Register |    -   |    -   |   70   |    -   |    -   |
++-----------+--------+--------+--------+--------+--------+
+|   Total   |    0   |   352  |  5193  |  59249 |    0   |
++-----------+--------+--------+--------+--------+--------+

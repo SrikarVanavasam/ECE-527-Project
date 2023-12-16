@@ -1,0 +1,10 @@
+#include "my_prj.h"
+#include <iostream>
+
+int main()
+{
+	float input[12] = {234, 60641, 4324, 53, 17, 5, 108, 108, 2, 2, 0, 4};
+	float output[2] = {0, 0};
+	my_prj(input, output);
+	std::cout << output[0] << std::endl;
+}

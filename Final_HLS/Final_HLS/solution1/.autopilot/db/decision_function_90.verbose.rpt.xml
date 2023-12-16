@@ -1,0 +1,219 @@
+<profile>
+
+<section name = "Vivado HLS Report for 'decision_function_90'" level="0">
+<item name = "Date">Mon Dec 11 23:07:48 2023
+</item>
+<item name = "Version">2019.1 (Build 2552052 on Fri May 24 15:28:33 MDT 2019)</item>
+<item name = "Project">Final_HLS</item>
+<item name = "Solution">solution1</item>
+<item name = "Product family">zynq</item>
+<item name = "Target device">xc7z020-clg400-1</item>
+</section>
+
+<section name = "Performance Estimates" level="0">
+<item name = "Timing (ns)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="4">Clock, Target, Estimated, Uncertainty</keys>
+<column name="ap_clk">10.00, 8.686, 1.25</column>
+</table>
+</item>
+</section>
+</item>
+<item name = "Latency (clock cycles)">
+<section name = "" level="1">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">, min, max, min, max, Type</keys>
+<column name="">491, 491, 491, 491, none</column>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="0">
+<keys size="7">Instance, Module, min, max, min, max, Type</keys>
+<column name="grp_tree_scores_fu_44">tree_scores, 399, 399, 399, 399, none</column>
+</table>
+</item>
+<item name = "Loop"><table name="" hasTotal="0">
+<keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- Trees">90, 90, 1, -, -, 90, no</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Utilization Estimates" level="0">
+<item name = "Summary"><table name="" hasTotal="1">
+<keys size="6">Name, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
+<column name="DSP">-, -, -, -, -</column>
+<column name="Expression">-, -, 0, 38, -</column>
+<column name="FIFO">-, -, -, -, -</column>
+<column name="Instance">-, -, 3563, 64176, -</column>
+<column name="Memory">-, -, -, -, -</column>
+<column name="Multiplexer">-, -, -, 48, -</column>
+<column name="Register">-, -, 1115, -, -</column>
+<specialColumn name="Available">280, 220, 106400, 53200, 0</specialColumn>
+<specialColumn name="Utilization (%)">0, 0, 4, 120, 0</specialColumn>
+</table>
+</item>
+<item name = "Detail">
+<section name = "" level="1">
+<item name = "Instance"><table name="" hasTotal="1">
+<keys size="7">Instance, Module, BRAM_18K, DSP48E, FF, LUT, URAM</keys>
+<column name="my_prj_acceleratoeOg_U228">my_prj_acceleratoeOg, 0, 0, 0, 457, 0</column>
+<column name="grp_tree_scores_fu_44">tree_scores, 0, 0, 3563, 63719, 0</column>
+</table>
+</item>
+<item name = "DSP48E"><table name="" hasTotal="0">
+<keys size="3">Instance, Module, Expression</keys>
+</table>
+</item>
+<item name = "Memory"><table name="" hasTotal="1">
+<keys size="10">Memory, Module, BRAM_18K, FF, LUT, URAM, Words, Bits, Banks, W*Bits*Banks</keys>
+</table>
+</item>
+<item name = "FIFO"><table name="" hasTotal="1">
+<keys size="8">Name, BRAM_18K, FF, LUT, URAM, Depth, Bits, Size:D*B</keys>
+</table>
+</item>
+<item name = "Expression"><table name="" hasTotal="1">
+<keys size="7">Variable Name, Operation, DSP48E, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
+<column name="add_ln703_fu_518_p2">+, 0, 0, 12, 12, 12</column>
+<column name="i_fu_416_p2">+, 0, 0, 15, 7, 1</column>
+<column name="icmp_ln113_fu_410_p2">icmp, 0, 0, 11, 7, 7</column>
+</table>
+</item>
+<item name = "Multiplexer"><table name="" hasTotal="1">
+<keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
+<column name="ap_NS_fsm">21, 4, 1, 4</column>
+<column name="ap_return">9, 2, 12, 24</column>
+<column name="i_0_reg_33">9, 2, 7, 14</column>
+<column name="score_V_0_0_reg_22">9, 2, 12, 24</column>
+</table>
+</item>
+<item name = "Register"><table name="" hasTotal="1">
+<keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
+<column name="ap_CS_fsm">3, 0, 3, 0</column>
+<column name="ap_return_preg">12, 0, 12, 0</column>
+<column name="grp_tree_scores_fu_44_ap_start_reg">1, 0, 1, 0</column>
+<column name="i_0_reg_33">7, 0, 7, 0</column>
+<column name="score_V_0_0_reg_22">12, 0, 12, 0</column>
+<column name="scores_10_reg_579">12, 0, 12, 0</column>
+<column name="scores_11_reg_584">12, 0, 12, 0</column>
+<column name="scores_12_reg_589">12, 0, 12, 0</column>
+<column name="scores_13_reg_594">12, 0, 12, 0</column>
+<column name="scores_14_reg_599">12, 0, 12, 0</column>
+<column name="scores_15_reg_604">12, 0, 12, 0</column>
+<column name="scores_16_reg_609">12, 0, 12, 0</column>
+<column name="scores_17_reg_614">12, 0, 12, 0</column>
+<column name="scores_18_reg_619">12, 0, 12, 0</column>
+<column name="scores_19_reg_624">12, 0, 12, 0</column>
+<column name="scores_1_reg_529">12, 0, 12, 0</column>
+<column name="scores_20_reg_629">12, 0, 12, 0</column>
+<column name="scores_21_reg_634">12, 0, 12, 0</column>
+<column name="scores_22_reg_639">12, 0, 12, 0</column>
+<column name="scores_23_reg_644">12, 0, 12, 0</column>
+<column name="scores_24_reg_649">12, 0, 12, 0</column>
+<column name="scores_25_reg_654">12, 0, 12, 0</column>
+<column name="scores_26_reg_659">12, 0, 12, 0</column>
+<column name="scores_27_reg_664">12, 0, 12, 0</column>
+<column name="scores_28_reg_669">12, 0, 12, 0</column>
+<column name="scores_29_reg_674">12, 0, 12, 0</column>
+<column name="scores_2_reg_534">12, 0, 12, 0</column>
+<column name="scores_30_reg_679">12, 0, 12, 0</column>
+<column name="scores_31_reg_684">12, 0, 12, 0</column>
+<column name="scores_32_reg_689">12, 0, 12, 0</column>
+<column name="scores_33_reg_694">12, 0, 12, 0</column>
+<column name="scores_34_reg_699">12, 0, 12, 0</column>
+<column name="scores_35_reg_704">12, 0, 12, 0</column>
+<column name="scores_36_reg_709">12, 0, 12, 0</column>
+<column name="scores_37_reg_714">12, 0, 12, 0</column>
+<column name="scores_38_reg_719">12, 0, 12, 0</column>
+<column name="scores_39_reg_724">12, 0, 12, 0</column>
+<column name="scores_3_reg_539">12, 0, 12, 0</column>
+<column name="scores_40_reg_729">12, 0, 12, 0</column>
+<column name="scores_41_reg_734">12, 0, 12, 0</column>
+<column name="scores_42_reg_739">12, 0, 12, 0</column>
+<column name="scores_43_reg_744">12, 0, 12, 0</column>
+<column name="scores_44_reg_749">12, 0, 12, 0</column>
+<column name="scores_45_reg_754">12, 0, 12, 0</column>
+<column name="scores_46_reg_759">12, 0, 12, 0</column>
+<column name="scores_47_reg_764">12, 0, 12, 0</column>
+<column name="scores_48_reg_769">12, 0, 12, 0</column>
+<column name="scores_49_reg_774">12, 0, 12, 0</column>
+<column name="scores_4_reg_544">12, 0, 12, 0</column>
+<column name="scores_50_reg_779">12, 0, 12, 0</column>
+<column name="scores_51_reg_784">12, 0, 12, 0</column>
+<column name="scores_52_reg_789">12, 0, 12, 0</column>
+<column name="scores_53_reg_794">12, 0, 12, 0</column>
+<column name="scores_54_reg_799">12, 0, 12, 0</column>
+<column name="scores_55_reg_804">12, 0, 12, 0</column>
+<column name="scores_56_reg_809">12, 0, 12, 0</column>
+<column name="scores_57_reg_814">12, 0, 12, 0</column>
+<column name="scores_58_reg_819">12, 0, 12, 0</column>
+<column name="scores_59_reg_824">12, 0, 12, 0</column>
+<column name="scores_5_reg_549">12, 0, 12, 0</column>
+<column name="scores_60_reg_829">12, 0, 12, 0</column>
+<column name="scores_61_reg_834">12, 0, 12, 0</column>
+<column name="scores_62_reg_839">12, 0, 12, 0</column>
+<column name="scores_63_reg_844">12, 0, 12, 0</column>
+<column name="scores_64_reg_849">12, 0, 12, 0</column>
+<column name="scores_65_reg_854">12, 0, 12, 0</column>
+<column name="scores_66_reg_859">12, 0, 12, 0</column>
+<column name="scores_67_reg_864">12, 0, 12, 0</column>
+<column name="scores_68_reg_869">12, 0, 12, 0</column>
+<column name="scores_69_reg_874">12, 0, 12, 0</column>
+<column name="scores_6_reg_554">12, 0, 12, 0</column>
+<column name="scores_70_reg_879">12, 0, 12, 0</column>
+<column name="scores_71_reg_884">12, 0, 12, 0</column>
+<column name="scores_72_reg_889">12, 0, 12, 0</column>
+<column name="scores_73_reg_894">12, 0, 12, 0</column>
+<column name="scores_74_reg_899">12, 0, 12, 0</column>
+<column name="scores_75_reg_904">12, 0, 12, 0</column>
+<column name="scores_76_reg_909">12, 0, 12, 0</column>
+<column name="scores_77_reg_914">12, 0, 12, 0</column>
+<column name="scores_78_reg_919">12, 0, 12, 0</column>
+<column name="scores_79_reg_924">12, 0, 12, 0</column>
+<column name="scores_7_reg_559">12, 0, 12, 0</column>
+<column name="scores_80_reg_929">12, 0, 12, 0</column>
+<column name="scores_81_reg_934">12, 0, 12, 0</column>
+<column name="scores_82_reg_939">12, 0, 12, 0</column>
+<column name="scores_83_reg_944">12, 0, 12, 0</column>
+<column name="scores_84_reg_949">12, 0, 12, 0</column>
+<column name="scores_85_reg_954">12, 0, 12, 0</column>
+<column name="scores_86_reg_959">12, 0, 12, 0</column>
+<column name="scores_87_reg_964">12, 0, 12, 0</column>
+<column name="scores_88_reg_969">12, 0, 12, 0</column>
+<column name="scores_8_reg_564">12, 0, 12, 0</column>
+<column name="scores_9_reg_569">12, 0, 12, 0</column>
+<column name="scores_reg_524">12, 0, 12, 0</column>
+<column name="scores_s_reg_574">12, 0, 12, 0</column>
+</table>
+</item>
+</section>
+</item>
+</section>
+
+<section name = "Interface" level="0">
+<item name = "Summary"><table name="" hasTotal="0">
+<keys size="6">RTL Ports, Dir, Bits, Protocol, Source Object, C Type</keys>
+<column name="ap_clk">in, 1, ap_ctrl_hs, decision_function.90, return value</column>
+<column name="ap_rst">in, 1, ap_ctrl_hs, decision_function.90, return value</column>
+<column name="ap_start">in, 1, ap_ctrl_hs, decision_function.90, return value</column>
+<column name="ap_done">out, 1, ap_ctrl_hs, decision_function.90, return value</column>
+<column name="ap_idle">out, 1, ap_ctrl_hs, decision_function.90, return value</column>
+<column name="ap_ready">out, 1, ap_ctrl_hs, decision_function.90, return value</column>
+<column name="ap_return">out, 12, ap_ctrl_hs, decision_function.90, return value</column>
+<column name="x_V_address0">out, 4, ap_memory, x_V, array</column>
+<column name="x_V_ce0">out, 1, ap_memory, x_V, array</column>
+<column name="x_V_q0">in, 12, ap_memory, x_V, array</column>
+<column name="x_V_address1">out, 4, ap_memory, x_V, array</column>
+<column name="x_V_ce1">out, 1, ap_memory, x_V, array</column>
+<column name="x_V_q1">in, 12, ap_memory, x_V, array</column>
+</table>
+</item>
+</section>
+</profile>
